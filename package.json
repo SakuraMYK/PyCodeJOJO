@@ -2,6 +2,7 @@
   "name": "pycodejojo",
   "displayName": "PyCodeJOJO",
   "description": "",
+  "icon": "images/kujojotaro.png",
   "version": "2025.5.12",
   "engines": {
     "vscode": "^1.100.0"
@@ -17,14 +18,7 @@
     "onLanguage:json"
   ],
   "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "pycodejojo.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
+  "contributes": {},
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
