@@ -1,13 +1,12 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "pycodejojo" is now active!');
-
+  console.log("========================================");
+  console.error("====== PyCodeJOJO extension activated  ======");
+  console.warn("====== warning  ======");
   const disposable = vscode.commands.registerCommand(
     "pycodejojo.helloWorld",
-    () => {
-      vscode.window.showInformationMessage("Hello World from PyCodeJOJO!");
-    }
+    () => {}
   );
 
   context.subscriptions.push(disposable);
