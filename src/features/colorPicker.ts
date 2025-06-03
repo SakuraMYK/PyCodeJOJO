@@ -28,6 +28,8 @@ export class ColorPicker implements vscode.DocumentColorProvider {
   ): vscode.ColorInformation[] {
     const colors: vscode.ColorInformation[] = [];
     const maps = [
+      ...getRGBMaps(document),
+      ...getRGBAMaps(document),
       ...getTupleRGBMaps(document),
       ...getTupleRGBAMaps(document),
       ...getHexMaps(document),
@@ -43,8 +45,29 @@ export class ColorPicker implements vscode.DocumentColorProvider {
     context: { document: vscode.TextDocument; range: vscode.Range },
     token: vscode.CancellationToken
   ): vscode.ProviderResult<vscode.ColorPresentation[]> {
-    return [];
+    return formatColor(color);
   }
+}
+
+function formatColor(color: vscode.Color): vscode.ColorPresentation[] {
+  const r = color.red * 255;
+  const g = color.green * 255;
+  const b = color.blue * 255;
+  const intAlpha = Math.round(color.alpha * 255);
+  const floatAlpha = color.alpha.toFixed(1);
+  const hex = `#${r.toString(16).padStart(2, "0")}${g
+    .toString(16)
+    .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`.toLowerCase();
+
+  return [
+    new vscode.ColorPresentation(`(${r}, ${g}, ${b})`),
+    new vscode.ColorPresentation(`(${r}, ${g}, ${b}, ${floatAlpha})`),
+    new vscode.ColorPresentation(`rgb(${r}, ${g}, ${b})`),
+    new vscode.ColorPresentation(`rgba(${r}, ${g}, ${b}, ${floatAlpha})`),
+    new vscode.ColorPresentation(`rgba(${r}, ${g}, ${b}, ${intAlpha})`),
+    new vscode.ColorPresentation(`(${r}, ${g}, ${b}, ${intAlpha})`),
+    new vscode.ColorPresentation(hex),
+  ];
 }
 
 function getRGBMaps(document: vscode.TextDocument): ColorMap[] {
@@ -96,7 +119,7 @@ function getRGBAMaps(document: vscode.TextDocument): ColorMap[] {
       A >= 0 &&
       A <= 255
     ) {
-      A = A > 1 ? 1 : A;
+      A = A > 1 ? A / 255 : A;
       maps.push({
         range: new vscode.Range(start, end),
         text: text,
