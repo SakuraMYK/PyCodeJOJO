@@ -1,3 +1,4 @@
+import { Console } from "console";
 import vscode from "vscode";
 
 const reRGB = /rgb\((\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)/gs;
@@ -53,6 +54,8 @@ function formatColor(
   color: vscode.Color,
   context: { document: vscode.TextDocument; range: vscode.Range }
 ): vscode.ColorPresentation[] {
+  // 数组的顺序影响 vscode的取色器标签文本的初次显示的文本值
+
   const { document, range } = context;
   const string = document.getText(range);
 
@@ -82,18 +85,40 @@ function formatColor(
     prefix = "rgba";
   }
 
-  const colorLabels = {
-    tuple: new vscode.ColorPresentation(`(${r}, ${g}, ${b}${a})`),
-    rgb: new vscode.ColorPresentation(`${prefix}(${r}, ${g}, ${b}${a})`),
-    hex: new vscode.ColorPresentation(`#${hexR}${hexG}${hexB}${hexA}`),
+  const labels = {
+    tuple: `(${r}, ${g}, ${b}${a})`,
+    rgb: `${prefix}(${r}, ${g}, ${b}${a})`,
+    hex: `#${hexR}${hexG}${hexB}${hexA}`,
   };
 
-  if (string.startsWith("(")) {
-    return [colorLabels.tuple, colorLabels.rgb, colorLabels.hex];
-  } else if (string.startsWith("rgb")) {
-    return [colorLabels.rgb, colorLabels.tuple, colorLabels.hex];
+  const defaultLabel = Object.values(labels);
+
+  if (defaultLabel.some((label) => label === string)) {
+    // 增加 一个判断，如果用户选择的颜色和当前文本颜色一致，则保留原顺序，避免切换视觉神似卡顿
+    return defaultLabel.map((label) => new vscode.ColorPresentation(label));
   } else {
-    return [colorLabels.hex, colorLabels.rgb, colorLabels.tuple];
+    if (string.startsWith("(")) {
+      console.log("tuple");
+      return [
+        new vscode.ColorPresentation(labels.tuple),
+        new vscode.ColorPresentation(labels.rgb),
+        new vscode.ColorPresentation(labels.hex),
+      ];
+    } else if (string.startsWith("rgb")) {
+      console.log("rgb");
+      return [
+        new vscode.ColorPresentation(labels.rgb),
+        new vscode.ColorPresentation(labels.tuple),
+        new vscode.ColorPresentation(labels.hex),
+      ];
+    } else {
+      console.log("hex");
+      return [
+        new vscode.ColorPresentation(labels.hex),
+        new vscode.ColorPresentation(labels.tuple),
+        new vscode.ColorPresentation(labels.rgb),
+      ];
+    }
   }
 }
 
