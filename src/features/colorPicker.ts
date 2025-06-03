@@ -47,6 +47,66 @@ export class ColorPicker implements vscode.DocumentColorProvider {
   }
 }
 
+function getRGBMaps(document: vscode.TextDocument): ColorMap[] {
+  const maps: ColorMap[] = [];
+  const matches = [...document.getText().matchAll(reRGB)];
+
+  for (const match of matches) {
+    const s = match.index;
+    const e = match.index + match[0].length;
+    const start = document.positionAt(s);
+    const end = document.positionAt(e);
+    const R = parseInt(match[1]);
+    const G = parseInt(match[2]);
+    const B = parseInt(match[3]);
+    const text = `rgba(${R}, ${G}, ${B}, 1)`;
+
+    if (R >= 0 && R <= 255 && G >= 0 && G <= 255 && B >= 0 && B <= 255) {
+      maps.push({
+        range: new vscode.Range(start, end),
+        text: text,
+        color: new vscode.Color(R / 255, G / 255, B / 255, 1),
+      });
+    }
+  }
+  return maps;
+}
+
+function getRGBAMaps(document: vscode.TextDocument): ColorMap[] {
+  const maps: ColorMap[] = [];
+  const matches = [...document.getText().matchAll(reRGBA)];
+  for (const match of matches) {
+    const s = match.index;
+    const e = match.index + match[0].length;
+    const start = document.positionAt(s);
+    const end = document.positionAt(e);
+    const R = parseInt(match[1]);
+    const G = parseInt(match[2]);
+    const B = parseInt(match[3]);
+    let A = parseFloat(match[4]);
+    const text = `rgba(${R}, ${G}, ${B}, ${A})`;
+
+    if (
+      R >= 0 &&
+      R <= 255 &&
+      G >= 0 &&
+      G <= 255 &&
+      B >= 0 &&
+      B <= 255 &&
+      A >= 0 &&
+      A <= 255
+    ) {
+      A = A > 1 ? 1 : A;
+      maps.push({
+        range: new vscode.Range(start, end),
+        text: text,
+        color: new vscode.Color(R / 255, G / 255, B / 255, A),
+      });
+    }
+  }
+  return maps;
+}
+
 function getTupleRGBMaps(document: vscode.TextDocument): ColorMap[] {
   const maps: ColorMap[] = [];
   const matches = [...document.getText().matchAll(reTupleRGB)];
