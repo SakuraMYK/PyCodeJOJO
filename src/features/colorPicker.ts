@@ -45,29 +45,56 @@ export class ColorPicker implements vscode.DocumentColorProvider {
     context: { document: vscode.TextDocument; range: vscode.Range },
     token: vscode.CancellationToken
   ): vscode.ProviderResult<vscode.ColorPresentation[]> {
-    return formatColor(color);
+    return formatColor(color, context);
   }
 }
 
-function formatColor(color: vscode.Color): vscode.ColorPresentation[] {
+function formatColor(
+  color: vscode.Color,
+  context: { document: vscode.TextDocument; range: vscode.Range }
+): vscode.ColorPresentation[] {
+  const { document, range } = context;
+  const string = document.getText(range);
+
   const r = color.red * 255;
   const g = color.green * 255;
   const b = color.blue * 255;
-  const intAlpha = Math.round(color.alpha * 255);
-  const floatAlpha = color.alpha.toFixed(1);
-  const hex = `#${r.toString(16).padStart(2, "0")}${g
-    .toString(16)
-    .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`.toLowerCase();
 
-  return [
-    new vscode.ColorPresentation(`(${r}, ${g}, ${b})`),
-    new vscode.ColorPresentation(`(${r}, ${g}, ${b}, ${floatAlpha})`),
-    new vscode.ColorPresentation(`rgb(${r}, ${g}, ${b})`),
-    new vscode.ColorPresentation(`rgba(${r}, ${g}, ${b}, ${floatAlpha})`),
-    new vscode.ColorPresentation(`rgba(${r}, ${g}, ${b}, ${intAlpha})`),
-    new vscode.ColorPresentation(`(${r}, ${g}, ${b}, ${intAlpha})`),
-    new vscode.ColorPresentation(hex),
-  ];
+  const hexR = r.toString(16).padStart(2, "0");
+  const hexG = g.toString(16).padStart(2, "0");
+  const hexB = b.toString(16).padStart(2, "0");
+
+  let a;
+  let hexA;
+  let prefix;
+
+  if (color.alpha === 1) {
+    a = "";
+    hexA = "";
+    prefix = "rgb";
+  } else if (color.alpha === 0) {
+    a = ", 0";
+    hexA = "00";
+    prefix = "rgba";
+  } else {
+    a = `, ${color.alpha.toFixed(2)}`;
+    hexA = Math.round(color.alpha * 255).toString(16);
+    prefix = "rgba";
+  }
+
+  const colorLabels = {
+    tuple: new vscode.ColorPresentation(`(${r}, ${g}, ${b}${a})`),
+    rgb: new vscode.ColorPresentation(`${prefix}(${r}, ${g}, ${b}${a})`),
+    hex: new vscode.ColorPresentation(`#${hexR}${hexG}${hexB}${hexA}`),
+  };
+
+  if (string.startsWith("(")) {
+    return [colorLabels.tuple, colorLabels.rgb, colorLabels.hex];
+  } else if (string.startsWith("rgb")) {
+    return [colorLabels.rgb, colorLabels.tuple, colorLabels.hex];
+  } else {
+    return [colorLabels.hex, colorLabels.rgb, colorLabels.tuple];
+  }
 }
 
 function getRGBMaps(document: vscode.TextDocument): ColorMap[] {
