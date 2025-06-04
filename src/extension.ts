@@ -1,5 +1,8 @@
 import * as vscode from "vscode";
-import { ColorPicker, getColorMaps } from "./features/colorPicker";
+import { ColorPicker } from "./features/colorPicker";
+import { FontBackgroundColor } from "./features/fontBackgroundColor";
+
+const fontBackgroundColor = new FontBackgroundColor();
 
 let enable_ColorPicker = true;
 
@@ -10,21 +13,14 @@ export function activate(context: vscode.ExtensionContext) {
     );
   }
 
-  // context.subscriptions.push(
-  //   vscode.workspace.onDidChangeTextDocument((event) => {
-  //     getColorMaps(event.document).forEach((colorMap) => {
-  //       vscode.window.activeTextEditor?.setDecorations(
-  //         vscode.window.createTextEditorDecorationType({
-  //           backgroundColor: colorMap.text,
-  //           borderRadius: "9px",
-  //         }),
-  //         [colorMap.range]
-  //       );
-  //     });
-  //   })
-  // );
+  fontBackgroundColor.update(vscode.window.activeTextEditor);
+
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeTextDocument((event) => {
+      fontBackgroundColor.update(vscode.window.activeTextEditor);
+    })
+  );
 }
-// #ffffff
-// rgba(106, 13, 13, 0.2)
-// rgba(1, 1,  1,1)
-export function deactivate() {}
+export function deactivate() {
+  fontBackgroundColor.dispose();
+}
