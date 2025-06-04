@@ -1,4 +1,3 @@
-import { Console } from "console";
 import vscode from "vscode";
 
 const reRGB = /rgb\((\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)/gs;
@@ -28,14 +27,8 @@ export class ColorPicker implements vscode.DocumentColorProvider {
     token: vscode.CancellationToken
   ): vscode.ColorInformation[] {
     const colors: vscode.ColorInformation[] = [];
-    const maps = [
-      ...getRGBMaps(document),
-      ...getRGBAMaps(document),
-      ...getTupleRGBMaps(document),
-      ...getTupleRGBAMaps(document),
-      ...getHexMaps(document),
-    ];
-    for (const map of maps) {
+
+    for (const map of getColorMaps(document)) {
       colors.push(new vscode.ColorInformation(map.range, map.color));
     }
     return colors;
@@ -120,6 +113,16 @@ function formatColor(
       ];
     }
   }
+}
+
+export function getColorMaps(document: vscode.TextDocument): ColorMap[] {
+  return [
+    ...getRGBMaps(document),
+    ...getRGBAMaps(document),
+    ...getTupleRGBMaps(document),
+    ...getTupleRGBAMaps(document),
+    ...getHexMaps(document),
+  ];
 }
 
 function getRGBMaps(document: vscode.TextDocument): ColorMap[] {
