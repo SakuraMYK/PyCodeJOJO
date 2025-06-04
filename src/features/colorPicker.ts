@@ -84,34 +84,12 @@ function formatColor(
     hex: `#${hexR}${hexG}${hexB}${hexA}`,
   };
 
-  const defaultLabel = Object.values(labels);
-
-  if (defaultLabel.some((label) => label === string)) {
-    // 增加 一个判断，如果用户选择的颜色和当前文本颜色一致，则保留原顺序，避免切换视觉神似卡顿
-    return defaultLabel.map((label) => new vscode.ColorPresentation(label));
+  if (string.startsWith("(")) {
+    return [new vscode.ColorPresentation(labels.tuple)];
+  } else if (string.startsWith("rgb")) {
+    return [new vscode.ColorPresentation(labels.rgb)];
   } else {
-    if (string.startsWith("(")) {
-      console.log("tuple");
-      return [
-        new vscode.ColorPresentation(labels.tuple),
-        new vscode.ColorPresentation(labels.rgb),
-        new vscode.ColorPresentation(labels.hex),
-      ];
-    } else if (string.startsWith("rgb")) {
-      console.log("rgb");
-      return [
-        new vscode.ColorPresentation(labels.rgb),
-        new vscode.ColorPresentation(labels.tuple),
-        new vscode.ColorPresentation(labels.hex),
-      ];
-    } else {
-      console.log("hex");
-      return [
-        new vscode.ColorPresentation(labels.hex),
-        new vscode.ColorPresentation(labels.tuple),
-        new vscode.ColorPresentation(labels.rgb),
-      ];
-    }
+    return [new vscode.ColorPresentation(labels.hex)];
   }
 }
 
