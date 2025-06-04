@@ -45,18 +45,23 @@
   "contributes": {
     "themes": [
       {
-        "label": "Dark",
+        "label": "Bumblebee",
         "uiTheme": "vs-dark",
-        "path": "./themes/dark.json"
+        "path": "themes/OptimusPrime.json"
+      },
+      {
+        "label": "myH",
+        "uiTheme": "vs-dark",
+        "path": "./themes/t.json"
       }
     ],
     "configuration": {
       "title": "PyCodeJOJO",
       "properties": {
-        "pycodejojo.ColorPicker": {
+        "pycodejojo.ColorPicker.Enable": {
           "type": "boolean",
           "default": true,
-          "description": "启用 取色器"
+          "description": "Enable ColorPicker"
         },
         "pycodejojo.ColorPicker.MatchRGB": {
           "type": "boolean",
@@ -66,12 +71,12 @@
         "pycodejojo.ColorPicker.MatchTupleRGB": {
           "type": "boolean",
           "default": true,
-          "description": "Match RGB Tuple (x, x, x) | (x, x, x, x)"
+          "description": "Match RGB Tuples (x, x, x) | (x, x, x, x)"
         },
         "pycodejojo.ColorPicker.MatchHex": {
           "type": "boolean",
           "default": true,
-          "description": "Match #FFFFFF | #FFFFFFFF | #FFF"
+          "description": "Match Hex Color #FFFFFF | #FFFFFFFF | #FFF"
         }
       }
     }
