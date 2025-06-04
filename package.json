@@ -43,6 +43,13 @@
     "url": "https://github.com/SakuraMYK/PyCodeJOJO.git"
   },
   "contributes": {
+    "themes": [
+      {
+        "label": "Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark.json"
+      }
+    ],
     "configuration": {
       "title": "PyCodeJOJO",
       "properties": {
