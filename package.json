@@ -47,12 +47,7 @@
       {
         "label": "Bumblebee",
         "uiTheme": "vs-dark",
-        "path": "themes/OptimusPrime.json"
-      },
-      {
-        "label": "myH",
-        "uiTheme": "vs-dark",
-        "path": "./themes/t.json"
+        "path": "themes/BumbleBee.json"
       }
     ],
     "configuration": {
