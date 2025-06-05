@@ -14,6 +14,8 @@ export class FontBackgroundColor {
         backgroundColor: colorMap.text,
         borderRadius: "9px",
         color: this._getContrastColor(colorMap.color),
+        overviewRulerColor: colorMap.text,
+        overviewRulerLane: vscode.OverviewRulerLane.Right,
       });
       this._decorationTypes.push(decorationType);
       editor.setDecorations(decorationType, [colorMap.range]);
