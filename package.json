@@ -48,6 +48,33 @@
         "label": "Bumblebee",
         "uiTheme": "vs-dark",
         "path": "themes/BumbleBee.json"
+      },
+      {
+        "label": "DarkKnight",
+        "uiTheme": "vs-dark",
+        "path": "themes/DarkKnight.json"
+      },
+      {
+        "label": "OptimusPrime",
+        "uiTheme": "vs-dark",
+        "path": "themes/OptimusPrime.json"
+      },
+      {
+        "label": "PurpleCrystal",
+        "uiTheme": "vs-dark",
+        "path": "themes/PurpleCrystal.json"
+      },
+      {
+        "label": "PurplePhantom",
+        "uiTheme": "vs-dark",
+        "path": "themes/PurplePhantom.json"
+      }
+    ],
+    "commands": [
+      {
+        "category": "PyCodeJOJO",
+        "command": "pycodejojo.ChangeTheme",
+        "title": "change Theme"
       }
     ],
     "configuration": {
