@@ -15,6 +15,9 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.workspace.onDidChangeTextDocument((event) => {
       fontBackgroundColor.update(vscode.window.activeTextEditor);
     }),
+    vscode.window.onDidChangeActiveTextEditor((editor) => {
+      fontBackgroundColor.update(editor);
+    }),
     vscode.window.onDidChangeTextEditorSelection(async (event) => {
       getHoverInfo(event);
     }),
@@ -24,6 +27,8 @@ export function activate(context: vscode.ExtensionContext) {
       changeTheme();
     })
   );
+
+  changeTheme();
 }
 
 export function deactivate() {
