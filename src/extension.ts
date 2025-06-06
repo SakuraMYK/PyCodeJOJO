@@ -3,7 +3,6 @@ import { ColorPicker } from "./features/colorPicker";
 import { FontBackgroundColor } from "./features/fontBackgroundColor";
 import { getHoverInfo } from "./features/hoverTranslate";
 
-let decorationType: vscode.TextEditorDecorationType;
 const fontBackgroundColor = new FontBackgroundColor();
 
 export function activate(context: vscode.ExtensionContext) {
