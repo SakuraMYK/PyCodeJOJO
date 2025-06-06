@@ -68,6 +68,11 @@
         "label": "PurplePhantom",
         "uiTheme": "vs-dark",
         "path": "themes/PurplePhantom.json"
+      },
+      {
+        "label": "IronMan-Mark3",
+        "uiTheme": "vs-dark",
+        "path": "themes/IronMan-Mark3.json"
       }
     ],
     "commands": [

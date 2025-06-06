@@ -1,0 +1,100 @@
+{
+    "name": "Iron Man",
+    "type": "dark",
+    "colors": {
+        "editor.background": "#1E0808",
+        "editor.foreground": "#FFD700",
+        "activityBarBadge.background": "#8B0000",
+        "sideBarTitle.foreground": "#FFB300",
+        "titleBar.activeBackground": "#1E0808",
+        "titleBar.activeForeground": "#FFB300",
+        "statusBar.background": "#8B0000",
+        "statusBar.foreground": "#FFB300",
+        "activityBar.background": "#8B0000",
+        "activityBar.foreground": "#FFB300",
+        "sideBar.background": "#1E0808",
+        "sideBar.foreground": "#FFD700",
+        "tab.activeBackground": "#8B0000",
+        "tab.activeForeground": "#FFB300",
+        "tab.inactiveBackground": "#1E0808",
+        "tab.inactiveForeground": "#FFD700",
+        "editorGroupHeader.tabsBackground": "#1E0808",
+        "editorCursor.foreground": "#FFB300",
+        "editor.selectionBackground": "#8B0000",
+        "editor.lineHighlightBackground": "#2A0D0D",
+        "editorLineNumber.foreground": "#DAA520",
+        "editorLineNumber.activeForeground": "#FFB300"
+    },
+    "tokenColors": [
+        {
+            "name": "Comments",
+            "scope": ["comment", "punctuation.definition.comment"],
+            "settings": {
+                "foreground": "#B8860B"
+            }
+        },
+        {
+            "name": "String",
+            "scope": ["string", "string.quoted"],
+            "settings": {
+                "foreground": "#DAA520"
+            }
+        },
+        {
+            "name": "Keywords",
+            "scope": ["keyword", "storage.type", "storage.modifier"],
+            "settings": {
+                "foreground": "#FFD700"
+            }
+        },
+        {
+            "name": "Functions",
+            "scope": ["entity.name.function", "support.function"],
+            "settings": {
+                "foreground": "#FFC125"
+            }
+        },
+        {
+            "name": "Variables",
+            "scope": ["variable", "support.variable"],
+            "settings": {
+                "foreground": "#FFB300"
+            }
+        },
+        {
+            "name": "Classes",
+            "scope": ["entity.name.type", "entity.name.class", "entity.name.namespace"],
+            "settings": {
+                "foreground": "#FFD700"
+            }
+        },
+        {
+            "name": "Numbers",
+            "scope": ["constant.numeric"],
+            "settings": {
+                "foreground": "#FFB300"
+            }
+        },
+        {
+            "name": "Constants",
+            "scope": ["constant.language", "support.constant"],
+            "settings": {
+                "foreground": "#FFB300"
+            }
+        },
+        {
+            "name": "Tags",
+            "scope": ["entity.name.tag", "punctuation.definition.tag"],
+            "settings": {
+                "foreground": "#8B0000"
+            }
+        },
+        {
+            "name": "Attributes",
+            "scope": ["entity.other.attribute-name"],
+            "settings": {
+                "foreground": "#FFD700"
+            }
+        }
+    ]
+}
