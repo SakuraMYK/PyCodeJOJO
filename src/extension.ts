@@ -7,13 +7,9 @@ let decorationType: vscode.TextEditorDecorationType;
 const fontBackgroundColor = new FontBackgroundColor();
 
 export function activate(context: vscode.ExtensionContext) {
-  // 注册颜色选择器提供程序
-  context.subscriptions.push(
-    vscode.languages.registerColorProvider("*", new ColorPicker())
-  );
-
   // 注册字体背景颜色提供程序
   context.subscriptions.push(
+    vscode.languages.registerColorProvider("*", new ColorPicker()),
     vscode.workspace.onDidOpenTextDocument((document) => {
       fontBackgroundColor.update(vscode.window.activeTextEditor);
     }),
