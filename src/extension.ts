@@ -19,10 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
     }),
     vscode.workspace.onDidChangeTextDocument((event) => {
       fontBackgroundColor.update(vscode.window.activeTextEditor);
-    })
-  );
-
-  context.subscriptions.push(
+    }),
     vscode.window.onDidChangeTextEditorSelection(async (event) => {
       getHoverInfo(event);
     })
