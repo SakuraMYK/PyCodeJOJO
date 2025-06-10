@@ -20,8 +20,6 @@ interface ColorMap {
 }
 
 export class ColorPicker implements vscode.DocumentColorProvider {
-  constructor() {}
-
   provideDocumentColors(
     document: vscode.TextDocument,
     token: vscode.CancellationToken
