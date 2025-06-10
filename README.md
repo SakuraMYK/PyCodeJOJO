@@ -1,71 +1,68 @@
-# pycodejojo README
+# PyCodeJoJo VSCode Extension
 
-This is the README for your extension "pycodejojo". After writing up a brief description, we recommend including the following sections.
+PyCodeJoJo是一个功能丰富的VSCode扩展,提供了多个变形金刚和超级英雄主题,以及一些实用的编码辅助功能。
 
-## Features
+## 特性
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### 🎨 主题集合
+- **Iron Man Mark 3** - 钢铁侠经典配色
+- **Bumblebee** - 大黄蜂明亮配色
+- **Dark Knight** - 黑暗骑士深色主题
+- **Optimus Prime** - 擎天柱经典配色
+- **Purple Crystal/Phantom** - 紫色水晶/幻影系列主题
 
-For example if there is an image subfolder under your extension project workspace:
+### 🛠️ 功能特性
 
-\!\[feature X\]\(images/feature-x.png\)
+#### 颜色选择器
+- 快速选择和预览颜色
+- 支持多种颜色格式(HEX, RGB, HSL)
+- 实时颜色预览
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+#### 字体背景色设置
+- 自定义代码字体背景色
+- 提升代码可读性
+- 支持多种颜色设置
 
-## Requirements
+#### 悬停翻译
+- 代码注释实时翻译
+- 支持多语言互译
+- 提升代码理解效率
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## 安装
 
-## Extension Settings
+1. 打开 VS Code
+2. 按下 `Ctrl+P` 打开命令面板
+3. 输入 `ext install pycodejojo`
+4. 点击安装
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## 使用方法
 
-For example:
+### 切换主题
+1. `Ctrl+Shift+P` 打开命令面板
+2. 输入 "Preferences: Color Theme"
+3. 选择任意 PyCodeJoJo 主题
 
-This extension contributes the following settings:
+### 使用颜色选择器
+1. 在代码中右键
+2. 选择 "Pick Color" 选项
+3. 使用颜色选择器界面选择颜色
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### 设置字体背景色
+1. 通过命令面板或快捷键激活功能
+2. 选择需要设置背景色的代码
+3. 从调色板中选择合适的背景色
 
-## Known Issues
+### 悬停翻译
+- 将鼠标悬停在代码注释上即可查看翻译结果
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## 贡献
 
-## Release Notes
+欢迎提交问题和功能建议到 [GitHub仓库](https://github.com/yourusername/pycodejojo)
 
-Users appreciate release notes as you update your extension.
+## 许可证
 
-### 1.0.0
+MIT
 
-Initial release of ...
+## 更新日志
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+详见 [CHANGELOG.md](CHANGELOG.md)
