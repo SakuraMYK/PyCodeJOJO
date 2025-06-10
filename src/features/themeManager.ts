@@ -24,7 +24,7 @@ export function changeTheme() {
 
   const quickPick = vscode.window.createQuickPick();
   quickPick.items = items;
-  quickPick.placeholder = "↑↓ choose a theme, ESC cancel";
+  quickPick.placeholder = "↑↓ chose theme, Enter confirm, Esc cancel";
   quickPick.ignoreFocusOut = true;
   quickPick.matchOnDescription = false;
   quickPick.matchOnDetail = false;
