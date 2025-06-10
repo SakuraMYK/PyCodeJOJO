@@ -31,9 +31,9 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 ## 📥 安装 | Installation
 
 1. 🚀 打开 VS Code | Open VS Code
-2. ⌨️ 按下 `Ctrl+P` 打开命令面板 | Press `Ctrl+P` to open command palette
-3. 💻 输入 `ext install pycodejojo` | Type `ext install pycodejojo`
-4. ✅ 点击安装 | Click install
+2. ⌨️ 按下 `Ctrl+Shift+X` 打开扩展栏 | Press `Ctrl+Shift+X` to open Extensions
+3. 🔍 搜索 `pycodejojo` | Search for `pycodejojo`
+4. ✅ 点击安装 | Click Install
 
 ## 📖 使用方法 | Usage
 
