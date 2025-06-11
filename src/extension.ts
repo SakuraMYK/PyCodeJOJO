@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.onDidChangeTextEditorSelection(async (event) => {
       if (enableHoverTranslate) getHoverInfo(event);
     }),
-    vscode.commands.registerCommand("pycodejojo.choseTheme", async () => {
+    vscode.commands.registerCommand("pycodejojo.ChoseTheme", async () => {
       choseTheme();
     }),
 

@@ -84,7 +84,7 @@
       {
         "category": "PyCodeJOJO",
         "command": "pycodejojo.ChoseTheme",
-        "title": "change Theme"
+        "title": "chose Theme"
       }
     ],
     "configuration": {
