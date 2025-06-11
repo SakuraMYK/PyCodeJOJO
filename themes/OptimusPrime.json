@@ -2,10 +2,9 @@
   "name": "OptimusPrime",
   "type": "dark",
   "colors": {
-    "editor.background": "#152540",
+    "editor.background": "#1d2142",
     "editor.foreground": "#b08f8f",
     "activityBarBadge.background": "#b61e19",
-
     "sideBarTitle.foreground": "#7aa546",
     "statusBar.background": "#071175",
     "statusBar.foreground": "#E8F1FF",
@@ -29,7 +28,7 @@
     "selection.background": "#FF174455",
     "editor.selectionBackground": "#ae354d33",
     "editor.wordHighlightBackground": "#a2181878",
-    "editor.lineHighlightBackground": "#4d4b708b",
+    "editor.lineHighlightBackground": "#3c3b4e37",
     "editorCursor.foreground": "#d7de11",
     "editorLineNumber.foreground": "#8B6D7B",
     "editorLineNumber.activeForeground": "#6767e6",
@@ -59,14 +58,14 @@
       "scope": ["comment", "punctuation.definition.comment"],
       "settings": {
         "fontStyle": "italic",
-        "foreground": "#b72632"
+        "foreground": "#6272db"
       }
     },
     {
       "name": "Variables",
       "scope": ["variable", "string constant.other.placeholder"],
       "settings": {
-        "foreground": "#545dc6"
+        "foreground": "#cbcbcb"
       }
     },
     {
@@ -165,7 +164,7 @@
         "punctuation.accessor"
       ],
       "settings": {
-        "foreground": "#986D73"
+        "foreground": "#73fbb5"
       }
     },
     {
