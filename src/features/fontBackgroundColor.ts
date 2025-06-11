@@ -1,9 +1,11 @@
 import vscode from "vscode";
 import { getColorMaps, EnableMap } from "./colorPicker";
+import { resourceUsage } from "process";
 
 export class FontBackgroundColor {
   private _decorationTypes: vscode.TextEditorDecorationType[] = [];
   public enableMap: EnableMap = {
+    Enable: true,
     MatchRGB: true,
     MatchTupleRGB: true,
     MatchHex: true,
@@ -12,6 +14,7 @@ export class FontBackgroundColor {
   public update(editor: vscode.TextEditor | undefined) {
     if (!editor) return;
     this._clear(editor);
+    if (!this.enableMap.Enable) return;
     const colorMaps = getColorMaps(editor.document, this.enableMap);
 
     for (const colorMap of colorMaps) {

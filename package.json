@@ -73,6 +73,11 @@
         "label": "IronMan-Mark3",
         "uiTheme": "vs-dark",
         "path": "themes/IronMan-Mark3.json"
+      },
+      {
+        "label": "FrozenCrystal",
+        "uiTheme": "vs-dark",
+        "path": "themes/FrozenCrystal.json"
       }
     ],
     "commands": [
@@ -104,6 +109,11 @@
           "type": "boolean",
           "default": true,
           "description": "Match Hex Color #FFFFFF | #FFFFFFFF | #FFF"
+        },
+        "pycodejojo.FontBackgroundColor.Enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Font Background Color"
         }
       }
     }

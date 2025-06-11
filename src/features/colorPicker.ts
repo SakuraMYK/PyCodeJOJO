@@ -20,7 +20,7 @@ interface ColorMap {
 }
 
 export interface EnableMap {
-  enable?: boolean;
+  Enable: boolean;
   MatchRGB: boolean;
   MatchTupleRGB: boolean;
   MatchHex: boolean;
@@ -28,6 +28,7 @@ export interface EnableMap {
 
 export class ColorPicker implements vscode.DocumentColorProvider {
   public enableMap: EnableMap = {
+    Enable: true,
     MatchRGB: true,
     MatchTupleRGB: true,
     MatchHex: true,
@@ -37,6 +38,7 @@ export class ColorPicker implements vscode.DocumentColorProvider {
     document: vscode.TextDocument,
     token: vscode.CancellationToken
   ): vscode.ColorInformation[] {
+    if (!this.enableMap.Enable) return [];
     const colors: vscode.ColorInformation[] = [];
     for (const map of getColorMaps(document, this.enableMap)) {
       colors.push(new vscode.ColorInformation(map.range, map.color));

@@ -35,6 +35,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     vscode.workspace.onDidChangeConfiguration((event) => {
       const config = vscode.workspace.getConfiguration("pycodejojo");
+      if (event.affectsConfiguration("pycodejojo.ColorPicker.Enable")) {
+        const match = config.get("ColorPicker.Enable", true);
+        colorPicker.enableMap.Enable = match;
+      }
       if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchRGB")) {
         const match = config.get("ColorPicker.MatchRGB", true);
         colorPicker.enableMap.MatchRGB = match;
@@ -49,6 +53,10 @@ export function activate(context: vscode.ExtensionContext) {
         const match = config.get("ColorPicker.MatchHex", true);
         colorPicker.enableMap.MatchHex = match;
         fontBackgroundColor.enableMap.MatchHex = match;
+      }
+      if (event.affectsConfiguration("pycodejojo.FontBackgroundColor.Enable")) {
+        const match = config.get("FontBackgroundColor.Enable", true);
+        fontBackgroundColor.enableMap.Enable = match;
       }
     })
   );
