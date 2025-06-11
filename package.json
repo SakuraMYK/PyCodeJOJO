@@ -114,6 +114,20 @@
           "type": "boolean",
           "default": true,
           "description": "Enable Font Background Color"
+        },
+        "pycodejojo.Theme": {
+          "type": "string",
+          "default": "DarkKnight",
+          "enum": [
+            "Bumblebee",
+            "DarkKnight",
+            "OptimusPrime",
+            "PurpleCrystal",
+            "PurplePhantom",
+            "IronMan-Mark3",
+            "FrozenCrystal",
+            "Default Dark+"
+          ]
         }
       }
     }

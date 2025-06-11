@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { ColorPicker } from "./features/colorPicker";
 import { FontBackgroundColor } from "./features/fontBackgroundColor";
 import { getHoverInfo } from "./features/hoverTranslate";
-import { changeTheme } from "./features/themeManager";
+import { choseTheme } from "./features/themeManager";
 
 let enableFontBackgroundColor: boolean = true;
 let enableHoverTranslate: boolean = false;
@@ -29,8 +29,8 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.onDidChangeTextEditorSelection(async (event) => {
       if (enableHoverTranslate) getHoverInfo(event);
     }),
-    vscode.commands.registerCommand("pycodejojo.ChangeTheme", async () => {
-      changeTheme();
+    vscode.commands.registerCommand("pycodejojo.choseTheme", async () => {
+      choseTheme();
     }),
 
     vscode.workspace.onDidChangeConfiguration((event) => {
@@ -58,13 +58,28 @@ export function activate(context: vscode.ExtensionContext) {
         const match = config.get("FontBackgroundColor.Enable", true);
         fontBackgroundColor.enableMap.Enable = match;
       }
+    }),
+
+    vscode.workspace.onDidChangeConfiguration((event) => {
+      const config = vscode.workspace.getConfiguration("pycodejojo");
+      if (event.affectsConfiguration("pycodejojo.Theme")) {
+        const globalConfig = vscode.workspace.getConfiguration();
+        const theme = config.get("Theme");
+        globalConfig.update(
+          "workbench.colorTheme",
+          theme,
+          vscode.ConfigurationTarget.Global
+        );
+      }
     })
   );
 
   context.subscriptions.push(
     vscode.languages.registerColorProvider("*", colorPicker)
   );
-  changeTheme();
+
+  const hasActiveBefore = context.globalState.get("hasActivatedBefore");
+  if (!hasActiveBefore) choseTheme();
 }
 
 export function deactivate() {

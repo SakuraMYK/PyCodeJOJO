@@ -1,6 +1,6 @@
 import vscode from "vscode";
 
-export function changeTheme() {
+export function choseTheme() {
   // 获取当前扩展实例
   const extension = vscode.extensions.getExtension("PyJOJO.pycodejojo");
 
