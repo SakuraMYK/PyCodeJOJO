@@ -4,11 +4,6 @@ import { FontBackgroundColor } from "./features/fontBackgroundColor";
 import { getHoverInfo } from "./features/hoverTranslate";
 import { changeTheme } from "./features/themeManager";
 
-let enableColorPicker: boolean = true;
-let enableColorPickerMatchRGB: boolean = true;
-let enableColorPickerMatchTupleRGB: boolean = true;
-let enableColorPickerMatchHex: boolean = true;
-
 let enableFontBackgroundColor: boolean = true;
 let enableHoverTranslate: boolean = false;
 
@@ -35,31 +30,29 @@ export function activate(context: vscode.ExtensionContext) {
     }),
     vscode.commands.registerCommand("pycodejojo.ChangeTheme", async () => {
       changeTheme();
-    }),
-
-    vscode.workspace.onDidChangeConfiguration((event) => {
-      const config: vscode.WorkspaceConfiguration =
-        vscode.workspace.getConfiguration("pycodejojo");
-      if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchRGB")) {
-        enableColorPickerMatchRGB = config.get("ColorPicker.MatchRGB", true);
-      }
-      if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchTupleRGB")) {
-        enableColorPickerMatchTupleRGB = config.get(
-          "ColorPicker.MatchTupleRGB",
-          true
-        );
-      }
-      if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchHex")) {
-        enableColorPickerMatchHex = config.get("ColorPicker.MatchHex", true);
-      }
     })
+
+    // vscode.workspace.onDidChangeConfiguration((event) => {
+    //   const config: vscode.WorkspaceConfiguration =
+    //     vscode.workspace.getConfiguration("pycodejojo");
+    //   if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchRGB")) {
+    //     enableColorPickerMatchRGB = config.get("ColorPicker.MatchRGB", true);
+    //   }
+    //   if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchTupleRGB")) {
+    //     enableColorPickerMatchTupleRGB = config.get(
+    //       "ColorPicker.MatchTupleRGB",
+    //       true
+    //     );
+    //   }
+    //   if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchHex")) {
+    //     enableColorPickerMatchHex = config.get("ColorPicker.MatchHex", true);
+    //   }
+    // })
   );
 
-  if (enableColorPicker) {
-    context.subscriptions.push(
-      vscode.languages.registerColorProvider("*", new ColorPicker())
-    );
-  }
+  context.subscriptions.push(
+    vscode.languages.registerColorProvider("*", new ColorPicker())
+  );
   changeTheme();
 }
 

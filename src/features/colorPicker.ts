@@ -19,16 +19,53 @@ interface ColorMap {
   color: vscode.Color;
 }
 
+export interface EnableMap {
+  enable?: boolean;
+  enableMatchRGB: boolean;
+  enableMatchTupleRGB: boolean;
+  enableMatchHex: boolean;
+}
+
 export class ColorPicker implements vscode.DocumentColorProvider {
+  private enableMap: EnableMap = {
+    enableMatchRGB: true,
+    enableMatchTupleRGB: true,
+    enableMatchHex: true,
+  };
+
   provideDocumentColors(
     document: vscode.TextDocument,
     token: vscode.CancellationToken
   ): vscode.ColorInformation[] {
     const colors: vscode.ColorInformation[] = [];
-
     for (const map of getColorMaps(document)) {
       colors.push(new vscode.ColorInformation(map.range, map.color));
     }
+
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      const config = vscode.workspace.getConfiguration("pycodejojo");
+      if (e.affectsConfiguration("pycodejojo.ColorPicker.MatchRGB")) {
+        this.enableMap.enableMatchRGB = config.get(
+          "ColorPicker.MatchRGB",
+          true
+        );
+      }
+      if (e.affectsConfiguration("pycodejojo.ColorPicker.MatchTupleRGB")) {
+        this.enableMap.enableMatchTupleRGB = config.get(
+          "ColorPicker.MatchTupleRGB",
+          true
+        );
+      }
+      if (e.affectsConfiguration("pycodejojo.ColorPicker.MatchHex")) {
+        this.enableMap.enableMatchHex = config.get(
+          "ColorPicker.MatchHex",
+          true
+        );
+      }
+    });
+
+    console.log("ColorPicker: ");
+
     return colors;
   }
 
