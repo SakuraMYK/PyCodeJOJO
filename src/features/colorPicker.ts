@@ -21,16 +21,16 @@ interface ColorMap {
 
 export interface EnableMap {
   enable?: boolean;
-  enableMatchRGB: boolean;
-  enableMatchTupleRGB: boolean;
-  enableMatchHex: boolean;
+  MatchRGB: boolean;
+  MatchTupleRGB: boolean;
+  MatchHex: boolean;
 }
 
 export class ColorPicker implements vscode.DocumentColorProvider {
-  private enableMap: EnableMap = {
-    enableMatchRGB: true,
-    enableMatchTupleRGB: true,
-    enableMatchHex: true,
+  public enableMap: EnableMap = {
+    MatchRGB: true,
+    MatchTupleRGB: true,
+    MatchHex: true,
   };
 
   provideDocumentColors(
@@ -38,34 +38,9 @@ export class ColorPicker implements vscode.DocumentColorProvider {
     token: vscode.CancellationToken
   ): vscode.ColorInformation[] {
     const colors: vscode.ColorInformation[] = [];
-    for (const map of getColorMaps(document)) {
+    for (const map of getColorMaps(document, this.enableMap)) {
       colors.push(new vscode.ColorInformation(map.range, map.color));
     }
-
-    vscode.workspace.onDidChangeConfiguration((e) => {
-      const config = vscode.workspace.getConfiguration("pycodejojo");
-      if (e.affectsConfiguration("pycodejojo.ColorPicker.MatchRGB")) {
-        this.enableMap.enableMatchRGB = config.get(
-          "ColorPicker.MatchRGB",
-          true
-        );
-      }
-      if (e.affectsConfiguration("pycodejojo.ColorPicker.MatchTupleRGB")) {
-        this.enableMap.enableMatchTupleRGB = config.get(
-          "ColorPicker.MatchTupleRGB",
-          true
-        );
-      }
-      if (e.affectsConfiguration("pycodejojo.ColorPicker.MatchHex")) {
-        this.enableMap.enableMatchHex = config.get(
-          "ColorPicker.MatchHex",
-          true
-        );
-      }
-    });
-
-    console.log("ColorPicker: ");
-
     return colors;
   }
 
@@ -128,14 +103,17 @@ function formatColor(
   }
 }
 
-export function getColorMaps(document: vscode.TextDocument): ColorMap[] {
-  return [
-    ...getRGBMaps(document),
-    ...getRGBAMaps(document),
-    ...getTupleRGBMaps(document),
-    ...getTupleRGBAMaps(document),
-    ...getHexMaps(document),
-  ];
+export function getColorMaps(
+  document: vscode.TextDocument,
+  enable: EnableMap
+): ColorMap[] {
+  const maps: ColorMap[] = [];
+  if (enable.MatchRGB)
+    maps.push(...getRGBMaps(document), ...getRGBAMaps(document));
+  if (enable.MatchTupleRGB)
+    maps.push(...getTupleRGBMaps(document), ...getTupleRGBAMaps(document));
+  if (enable.MatchHex) maps.push(...getHexMaps(document));
+  return maps;
 }
 
 function getRGBMaps(document: vscode.TextDocument): ColorMap[] {

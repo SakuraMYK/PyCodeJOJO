@@ -1,13 +1,18 @@
 import vscode from "vscode";
-import { getColorMaps } from "./colorPicker";
+import { getColorMaps, EnableMap } from "./colorPicker";
 
 export class FontBackgroundColor {
   private _decorationTypes: vscode.TextEditorDecorationType[] = [];
+  public enableMap: EnableMap = {
+    MatchRGB: true,
+    MatchTupleRGB: true,
+    MatchHex: true,
+  };
 
   public update(editor: vscode.TextEditor | undefined) {
     if (!editor) return;
     this._clear(editor);
-    const colorMaps = getColorMaps(editor.document);
+    const colorMaps = getColorMaps(editor.document, this.enableMap);
 
     for (const colorMap of colorMaps) {
       const decorationType = vscode.window.createTextEditorDecorationType({

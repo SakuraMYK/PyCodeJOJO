@@ -8,6 +8,7 @@ let enableFontBackgroundColor: boolean = true;
 let enableHoverTranslate: boolean = false;
 
 const fontBackgroundColor = new FontBackgroundColor();
+const colorPicker = new ColorPicker();
 
 export function activate(context: vscode.ExtensionContext) {
   // 注册字体背景颜色提供程序
@@ -30,28 +31,30 @@ export function activate(context: vscode.ExtensionContext) {
     }),
     vscode.commands.registerCommand("pycodejojo.ChangeTheme", async () => {
       changeTheme();
-    })
+    }),
 
-    // vscode.workspace.onDidChangeConfiguration((event) => {
-    //   const config: vscode.WorkspaceConfiguration =
-    //     vscode.workspace.getConfiguration("pycodejojo");
-    //   if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchRGB")) {
-    //     enableColorPickerMatchRGB = config.get("ColorPicker.MatchRGB", true);
-    //   }
-    //   if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchTupleRGB")) {
-    //     enableColorPickerMatchTupleRGB = config.get(
-    //       "ColorPicker.MatchTupleRGB",
-    //       true
-    //     );
-    //   }
-    //   if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchHex")) {
-    //     enableColorPickerMatchHex = config.get("ColorPicker.MatchHex", true);
-    //   }
-    // })
+    vscode.workspace.onDidChangeConfiguration((event) => {
+      const config = vscode.workspace.getConfiguration("pycodejojo");
+      if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchRGB")) {
+        const match = config.get("ColorPicker.MatchRGB", true);
+        colorPicker.enableMap.MatchRGB = match;
+        fontBackgroundColor.enableMap.MatchRGB = match;
+      }
+      if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchTupleRGB")) {
+        const match = config.get("ColorPicker.MatchTupleRGB", true);
+        colorPicker.enableMap.MatchTupleRGB = match;
+        fontBackgroundColor.enableMap.MatchTupleRGB = match;
+      }
+      if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchHex")) {
+        const match = config.get("ColorPicker.MatchHex", true);
+        colorPicker.enableMap.MatchHex = match;
+        fontBackgroundColor.enableMap.MatchHex = match;
+      }
+    })
   );
 
   context.subscriptions.push(
-    vscode.languages.registerColorProvider("*", new ColorPicker())
+    vscode.languages.registerColorProvider("*", colorPicker)
   );
   changeTheme();
 }
