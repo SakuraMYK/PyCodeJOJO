@@ -79,7 +79,10 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   const hasActiveBefore = context.globalState.get("hasActivatedBefore");
-  if (!hasActiveBefore) choseTheme();
+  if (!hasActiveBefore) {
+    context.globalState.update("hasActivatedBefore", true);
+    choseTheme();
+  }
 }
 
 export function deactivate() {
