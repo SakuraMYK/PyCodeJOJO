@@ -51,14 +51,14 @@
   "contributes": {
     "themes": [
       {
-        "label": "Bumblebee",
-        "uiTheme": "vs-dark",
-        "path": "themes/BumbleBee.json"
-      },
-      {
         "label": "DarkKnight",
         "uiTheme": "vs-dark",
         "path": "themes/DarkKnight.json"
+      },
+      {
+        "label": "Bumblebee",
+        "uiTheme": "vs-dark",
+        "path": "themes/BumbleBee.json"
       },
       {
         "label": "OptimusPrime",

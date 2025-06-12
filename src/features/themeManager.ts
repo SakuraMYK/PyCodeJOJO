@@ -15,6 +15,9 @@ export function choseTheme() {
     items.push({
       label: "Default Dark+",
     });
+    vscode.window.showErrorMessage(
+      "No themes found then use default VSCode theme"
+    );
   }
 
   const config = vscode.workspace.getConfiguration();
@@ -24,18 +27,19 @@ export function choseTheme() {
 
   const quickPick = vscode.window.createQuickPick();
   quickPick.items = items;
-  quickPick.placeholder = "↑↓ chose a PyCodeJOJO theme, Enter confirm, Esc cancel";
+  quickPick.placeholder =
+    "↑↓ chose a PyCodeJOJO theme, Enter confirm, Esc cancel";
   quickPick.ignoreFocusOut = true;
   quickPick.matchOnDescription = false;
   quickPick.matchOnDetail = false;
   quickPick.canSelectMany = false;
 
   // 监听选择变化事件 - 实时切换主题
-  quickPick.onDidChangeActive(async (items) => {
+  quickPick.onDidChangeActive((items) => {
     if (items.length > 0) {
       const selectedItem = items[0];
       const themeId = selectedItem.label;
-      await config.update(
+      config.update(
         "workbench.colorTheme",
         themeId,
         vscode.ConfigurationTarget.Global

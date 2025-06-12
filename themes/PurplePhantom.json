@@ -172,7 +172,7 @@
 			],
 			"settings": {
 				"fontStyle": "bold",
-				"foreground": "#f7768e"
+				"foreground": "#1ec2ce"
 			}
 		},
 		{
@@ -206,7 +206,7 @@
 				"meta.block variable.other"
 			],
 			"settings": {
-				"foreground": "#f07178"
+				"foreground": "#c6519f"
 			}
 		},
 		{
@@ -216,7 +216,7 @@
 				"string.other.link"
 			],
 			"settings": {
-				"foreground": "#f07178"
+				"foreground": "#cc9698"
 			}
 		},
 		{
