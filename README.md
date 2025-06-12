@@ -11,6 +11,7 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 - 🤖 **Iron Man Mark 3** - 钢铁侠经典配色 | Iron Man classic color scheme
 - 🐝 **Bumblebee** - 大黄蜂明亮配色 | Bumblebee bright color scheme
 - 🦇 **Dark Knight** - 黑暗骑士深色主题 | Dark Knight dark theme
+- ❄️ **Frozen Crystal** - 冰霜水晶主题 | Frozen Crystal theme
 - 🚛 **Optimus Prime** - 擎天柱经典配色 | Optimus Prime classic color scheme
 - 💎 **Purple Crystal/Phantom** - 紫色水晶/幻影系列主题 | Purple Crystal/Phantom series themes
 
