@@ -3,7 +3,7 @@
   "displayName": "PyCodeJOJO",
   "description": "VSCode with superhero themes and coding utilities",
   "icon": "images/kujojotaro_alpha.png",
-  "version": "2025.6.1",
+  "version": "2025.6.2",
   "engines": {
     "vscode": "^1.100.0"
   },
@@ -29,19 +29,19 @@
     "changelog": "conventional-changelog -p custom-config -i CHANGELOG.md -s -r 0 -n ./changelog-option.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.100.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
+    "@types/vscode": "^1.100.0",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
-    "eslint": "^9.23.0",
-    "typescript": "^5.8.2",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
+    "compare-func": "^2.0.0",
     "conventional-changelog": "^3.1.25",
     "conventional-changelog-cli": "^2.2.2",
     "conventional-changelog-custom-config": "^0.3.1",
-    "compare-func": "^2.0.0"
+    "eslint": "^9.23.0",
+    "typescript": "^5.8.2"
   },
   "publisher": "PyJOJO",
   "repository": {
