@@ -40,17 +40,25 @@
     "breadcrumb.foreground": "#dc6b29",
     "breadcrumb.focusForeground": "#020304",
     "breadcrumb.activeSelectionForeground": "#ae495d",
+
     "menu.background": "#07073bd3",
     "menu.foreground": "#ededed",
     "menu.selectionBackground": "#8e0216",
     "menu.selectionForeground": "#E8F1FF",
     "menu.selectionBorder": "#E8F1FF",
+    "menu.border": "#4f2dcc",
+
     "editorGroup.border": "#244d8e",
     "editorGroupHeader.tabsBackground": "#0A2752",
     "editorGroup.dropBackground": "#FF174455",
     "editorGroup.dropIntoPromptBackground": "#657c9d",
     "editorGroup.dropIntoPromptBorder": "#E8F1FF",
-    "editorGroupHeader.border": "#E8F1FF"
+    "editorGroupHeader.border": "#E8F1FF",
+
+    "editorWidget.background": "#1d234a",
+    "editorWidget.border": "#d7d7d7f6",
+    "editorHoverWidget.background": "#2b135b",
+    "editorHoverWidget.border": "#d8d8d8"
   },
   "tokenColors": [
     {
