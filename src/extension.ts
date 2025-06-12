@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { ColorPicker } from "./features/colorPicker";
 import { FontBackgroundColor } from "./features/fontBackgroundColor";
 import { getHoverInfo } from "./features/hoverTranslate";
-import { choseTheme } from "./features/themeManager";
+import { choseTheme, themeUpdate } from "./features/themeManager";
 
 let enableFontBackgroundColor: boolean = true;
 let enableHoverTranslate: boolean = false;
@@ -29,58 +29,55 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.onDidChangeTextEditorSelection(async (event) => {
       if (enableHoverTranslate) getHoverInfo(event);
     }),
-    vscode.commands.registerCommand("pycodejojo.ChoseTheme", async () => {
+    vscode.commands.registerCommand("Pycodejojo.ChoseTheme", async () => {
       choseTheme();
     }),
 
     vscode.workspace.onDidChangeConfiguration((event) => {
-      const config = vscode.workspace.getConfiguration("pycodejojo");
-      if (event.affectsConfiguration("pycodejojo.ColorPicker.Enable")) {
-        const match = config.get("ColorPicker.Enable", true);
+      const config = vscode.workspace.getConfiguration();
+
+      if (event.affectsConfiguration("Pycodejojo.ColorPicker.Enable")) {
+        const match = config.get("Pycodejojo.ColorPicker.Enable", true);
         colorPicker.enableMap.Enable = match;
       }
-      if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchRGB")) {
-        const match = config.get("ColorPicker.MatchRGB", true);
+      if (event.affectsConfiguration("Pycodejojo.ColorPicker.MatchRGB")) {
+        const match = config.get("Pycodejojo.ColorPicker.MatchRGB", true);
         colorPicker.enableMap.MatchRGB = match;
         fontBackgroundColor.enableMap.MatchRGB = match;
       }
-      if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchTupleRGB")) {
-        const match = config.get("ColorPicker.MatchTupleRGB", true);
+      if (event.affectsConfiguration("Pycodejojo.ColorPicker.MatchTupleRGB")) {
+        const match = config.get("Pycodejojo.ColorPicker.MatchTupleRGB", true);
         colorPicker.enableMap.MatchTupleRGB = match;
         fontBackgroundColor.enableMap.MatchTupleRGB = match;
       }
-      if (event.affectsConfiguration("pycodejojo.ColorPicker.MatchHex")) {
-        const match = config.get("ColorPicker.MatchHex", true);
+      if (event.affectsConfiguration("Pycodejojo.ColorPicker.MatchHex")) {
+        const match = config.get("Pycodejojo.ColorPicker.MatchHex", true);
         colorPicker.enableMap.MatchHex = match;
         fontBackgroundColor.enableMap.MatchHex = match;
       }
-      if (event.affectsConfiguration("pycodejojo.FontBackgroundColor.Enable")) {
-        const match = config.get("FontBackgroundColor.Enable", true);
+      if (event.affectsConfiguration("Pycodejojo.FontBackgroundColor.Enable")) {
+        const match = config.get("Pycodejojo.FontBackgroundColor.Enable", true);
         fontBackgroundColor.enableMap.Enable = match;
       }
-    }),
-
-    vscode.workspace.onDidChangeConfiguration((event) => {
-      const config = vscode.workspace.getConfiguration("pycodejojo");
-      if (event.affectsConfiguration("pycodejojo.Theme")) {
-        const globalConfig = vscode.workspace.getConfiguration();
-        const theme = config.get("Theme");
-        globalConfig.update(
+      if (event.affectsConfiguration("Pycodejojo.Theme")) {
+        const selectTheme = config.get("Pycodejojo.Theme");
+        config.update(
           "workbench.colorTheme",
-          theme,
+          selectTheme,
           vscode.ConfigurationTarget.Global
         );
       }
     }),
+
     vscode.languages.registerColorProvider("*", colorPicker)
   );
 
   const config = vscode.workspace.getConfiguration();
-  const hasActivated = config.get("pycodejojo.HasActivated", undefined);
+  const hasActivated = config.get("Pycodejojo.HasActivated", undefined);
 
   if (!hasActivated) {
     config.update(
-      "pycodejojo.HasActivated",
+      "Pycodejojo.HasActivated",
       true,
       vscode.ConfigurationTarget.Global
     );

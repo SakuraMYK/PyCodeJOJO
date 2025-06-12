@@ -1,5 +1,7 @@
 import vscode from "vscode";
 
+const config = vscode.workspace.getConfiguration();
+
 export function choseTheme() {
   // 获取当前扩展实例
   const extension = vscode.extensions.getExtension("PyJOJO.pycodejojo");
@@ -16,14 +18,15 @@ export function choseTheme() {
       label: "Default Dark+",
     });
     vscode.window.showErrorMessage(
-      "No themes found then use default VSCode theme"
+      "No themes found in PyJOJO extension package.json"
     );
   }
 
-  const config = vscode.workspace.getConfiguration();
-
   // 保存当前主题，以便取消时恢复
-  const currentTheme = config.get("workbench.colorTheme");
+  const currentTheme = config.get<string>(
+    "workbench.colorTheme",
+    "Default Dark+"
+  );
 
   const quickPick = vscode.window.createQuickPick();
   quickPick.items = items;
@@ -38,12 +41,7 @@ export function choseTheme() {
   quickPick.onDidChangeActive((items) => {
     if (items.length > 0) {
       const selectedItem = items[0];
-      const themeId = selectedItem.label;
-      config.update(
-        "workbench.colorTheme",
-        themeId,
-        vscode.ConfigurationTarget.Global
-      );
+      themeUpdate(selectedItem.label);
     }
   });
 
@@ -54,14 +52,19 @@ export function choseTheme() {
   quickPick.onDidHide(() => {
     if (quickPick.selectedItems.length === 0) {
       // 用户取消了选择，恢复原主题
-      config.update(
-        "workbench.colorTheme",
-        currentTheme,
-        vscode.ConfigurationTarget.Global
-      );
+      themeUpdate(currentTheme);
     }
     quickPick.dispose();
   });
 
   quickPick.show();
+}
+
+export function themeUpdate(value: string) {
+  config.update(
+    "workbench.colorTheme",
+    value,
+    vscode.ConfigurationTarget.Global
+  );
+  config.update("Pycodejojo.Theme", value, vscode.ConfigurationTarget.Global);
 }

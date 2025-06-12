@@ -89,43 +89,43 @@
     "commands": [
       {
         "category": "PyCodeJOJO",
-        "command": "pycodejojo.ChoseTheme",
+        "command": "Pycodejojo.ChoseTheme",
         "title": "chose Theme"
       }
     ],
     "configuration": {
       "title": "PyCodeJOJO",
       "properties": {
-        "pycodejojo.HasActivated": {
+        "Pycodejojo.HasActivated": {
           "type": "boolean",
           "default": false
         },
-        "pycodejojo.ColorPicker.Enable": {
+        "Pycodejojo.ColorPicker.Enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable ColorPicker"
         },
-        "pycodejojo.ColorPicker.MatchRGB": {
+        "Pycodejojo.ColorPicker.MatchRGB": {
           "type": "boolean",
           "default": true,
           "description": "Match rgb(x, x, x) | rgba(x, x, x, x)"
         },
-        "pycodejojo.ColorPicker.MatchTupleRGB": {
+        "Pycodejojo.ColorPicker.MatchTupleRGB": {
           "type": "boolean",
           "default": true,
           "description": "Match RGB Tuples (x, x, x) | (x, x, x, x)"
         },
-        "pycodejojo.ColorPicker.MatchHex": {
+        "Pycodejojo.ColorPicker.MatchHex": {
           "type": "boolean",
           "default": true,
           "description": "Match Hex Color #FFFFFF | #FFFFFFFF | #FFF"
         },
-        "pycodejojo.FontBackgroundColor.Enable": {
+        "Pycodejojo.FontBackgroundColor.Enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable Font Background Color"
         },
-        "pycodejojo.Theme": {
+        "Pycodejojo.Theme": {
           "type": "string",
           "default": "DarkKnight",
           "enum": [
