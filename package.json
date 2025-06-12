@@ -1,9 +1,9 @@
 {
   "name": "pycodejojo",
   "displayName": "PyCodeJOJO",
-  "description": "",
-  "icon": "images/kujojotaro.png",
-  "version": "2025.5.12",
+  "description": "VSCode with superhero themes and coding utilities",
+  "icon": "images/kujojotaro_alpha.png",
+  "version": "2025.6.1",
   "engines": {
     "vscode": "^1.100.0"
   },
@@ -24,7 +24,9 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "version": "npm run changelog && git add CHANGELOG.md",
+    "changelog": "conventional-changelog -p custom-config -i CHANGELOG.md -s -r 0 -n ./changelog-option.js"
   },
   "devDependencies": {
     "@types/vscode": "^1.100.0",
@@ -35,7 +37,11 @@
     "eslint": "^9.23.0",
     "typescript": "^5.8.2",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "conventional-changelog": "^3.1.25",
+    "conventional-changelog-cli": "^2.2.2",
+    "conventional-changelog-custom-config": "^0.3.1",
+    "compare-func": "^2.0.0"
   },
   "publisher": "PyJOJO",
   "repository": {
@@ -131,5 +137,16 @@
         }
       }
     }
+  },
+  "auto-changelog": {
+    "output": "CHANGELOG.md",
+    "template": "keepachangelog",
+    "unreleased": true,
+    "commitLimit": false,
+    "breakingPattern": "BREAKING CHANGE:",
+    "ignoreCommitPattern": "^(chore|style)",
+    "sortCommits": "date-desc",
+    "hideEmptyReleases": true,
+    "hideCredit": true
   }
 }
