@@ -96,6 +96,10 @@
     "configuration": {
       "title": "PyCodeJOJO",
       "properties": {
+        "pycodejojo.HasActivated": {
+          "type": "boolean",
+          "default": false
+        },
         "pycodejojo.ColorPicker.Enable": {
           "type": "boolean",
           "default": true,

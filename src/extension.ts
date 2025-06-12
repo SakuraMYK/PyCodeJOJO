@@ -71,16 +71,19 @@ export function activate(context: vscode.ExtensionContext) {
           vscode.ConfigurationTarget.Global
         );
       }
-    })
-  );
-
-  context.subscriptions.push(
+    }),
     vscode.languages.registerColorProvider("*", colorPicker)
   );
 
-  const hasActiveBefore = context.globalState.get("hasActivatedBefore");
-  if (!hasActiveBefore) {
-    context.globalState.update("hasActivatedBefore", true);
+  const config = vscode.workspace.getConfiguration();
+  const hasActivated = config.get("pycodejojo.HasActivated", undefined);
+
+  if (!hasActivated) {
+    config.update(
+      "pycodejojo.HasActivated",
+      true,
+      vscode.ConfigurationTarget.Global
+    );
     choseTheme();
   }
 }

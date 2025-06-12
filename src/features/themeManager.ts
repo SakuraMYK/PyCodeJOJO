@@ -24,7 +24,7 @@ export function choseTheme() {
 
   const quickPick = vscode.window.createQuickPick();
   quickPick.items = items;
-  quickPick.placeholder = "↑↓ chose theme, Enter confirm, Esc cancel";
+  quickPick.placeholder = "↑↓ chose a PyCodeJOJO theme, Enter confirm, Esc cancel";
   quickPick.ignoreFocusOut = true;
   quickPick.matchOnDescription = false;
   quickPick.matchOnDetail = false;

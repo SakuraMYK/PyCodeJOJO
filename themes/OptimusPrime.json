@@ -2,7 +2,7 @@
   "name": "OptimusPrime",
   "type": "dark",
   "colors": {
-    "editor.background": "#1d2142",
+    "editor.background": "#1a1d3f",
     "editor.foreground": "#b08f8f",
     "activityBarBadge.background": "#b61e19",
     "sideBarTitle.foreground": "#7aa546",
