@@ -1,4 +1,24 @@
-## 2025.6.3 (2025-06-12)
+## [2025.6.4](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.3...v2025.6.4) (2025-06-12)
+
+
+### ♻️ 重构
+
+* **pycodejojo:** 重构主题管理功能 ([fb9520e](https://github.com/SakuraMYK/PyCodeJOJO/commit/fb9520e))
+* **theme:** 调整主题名称和配置 ([d4bf694](https://github.com/SakuraMYK/PyCodeJOJO/commit/d4bf694))
+
+
+### ✨ 新特性
+
+* 添加首次激活设置并优化主题选择功能 ([dfb11fa](https://github.com/SakuraMYK/PyCodeJOJO/commit/dfb11fa))
+
+
+### 🎫 其他更新
+
+* 删除主题 t.json ([2d5a2d6](https://github.com/SakuraMYK/PyCodeJOJO/commit/2d5a2d6))
+
+
+
+## [2025.6.3](https://github.com/SakuraMYK/PyCodeJOJO/compare/01d02e2...v2025.6.3) (2025-06-12)
 
 
 ### ♻️ 重构
