@@ -1,3 +1,17 @@
+## [2025.6.5](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.4...v2025.6.5) (2025-06-13)
+
+
+### ✨ 新特性
+
+* **themes:** 新增 EmeraldForest 主题 ([b8319df](https://github.com/SakuraMYK/PyCodeJOJO/commit/b8319df))
+
+
+### 💄 样式
+
+* **DarkKnight:** 调整多个代码元素的前景色 ([9b0cbca](https://github.com/SakuraMYK/PyCodeJOJO/commit/9b0cbca))
+
+
+
 ## [2025.6.4](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.3...v2025.6.4) (2025-06-12)
 
 
