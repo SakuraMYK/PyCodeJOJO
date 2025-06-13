@@ -84,6 +84,11 @@
         "label": "FrozenCrystal",
         "uiTheme": "vs-dark",
         "path": "themes/FrozenCrystal.json"
+      },
+      {
+        "label": "EmeraldForest",
+        "uiTheme": "vs-dark",
+        "path": "./themes/EmeraldForest.json"
       }
     ],
     "commands": [
@@ -136,6 +141,7 @@
             "PurplePhantom",
             "IronMan-Mark3",
             "FrozenCrystal",
+            "EmeraldForest",
             "Default Dark+"
           ]
         }
