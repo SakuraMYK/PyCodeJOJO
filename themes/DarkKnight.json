@@ -178,7 +178,7 @@
         "markup.deleted.git_gutter"
       ],
       "settings": {
-        "foreground": "#f07178"
+        "foreground": "#d1d1d1"
       }
     },
     {
@@ -199,7 +199,7 @@
       "name": "Block Level Variables",
       "scope": ["meta.block variable.other"],
       "settings": {
-        "foreground": "#f07178"
+        "foreground": "#b15a18"
       }
     },
     {
@@ -276,7 +276,7 @@
         "source.postcss support.type.property-name"
       ],
       "settings": {
-        "foreground": "#B2CCD6"
+        "foreground": "#466571"
       }
     },
     {
@@ -287,7 +287,7 @@
         "variable.other.class.js"
       ],
       "settings": {
-        "foreground": "#FF5370"
+        "foreground": "#9c152b"
       }
     },
     {
@@ -410,7 +410,7 @@
       ],
       "settings": {
         "fontStyle": "italic",
-        "foreground": "#FF5370"
+        "foreground": "#59b86a"
       }
     },
     {
@@ -419,7 +419,8 @@
         "source.json meta.structure.dictionary.json support.type.property-name.json"
       ],
       "settings": {
-        "foreground": "#C792EA"
+        "fontStyle": " italic",
+        "foreground": "#8b3fbd"
       }
     },
     {
