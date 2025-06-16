@@ -181,6 +181,15 @@
       "settings": {
         "foreground": "#d4d4d4"
       }
+    },
+    {
+      "scope": [
+        "constant.other.caps.python"
+      ],
+      "settings": {
+        "fontStyle":"italic",
+        "foreground": "#f6ea9b"
+      }
     }
   ]
 }
