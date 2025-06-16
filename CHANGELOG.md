@@ -1,3 +1,12 @@
+## [2025.6.6](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.5...v2025.6.6) (2025-06-16)
+
+
+### 💄 样式
+
+* **BumbleBee:** 添加 Python 全大写常量的样式 ([b44fd25](https://github.com/SakuraMYK/PyCodeJOJO/commit/b44fd25)), closes [#f6ea9](https://github.com/SakuraMYK/PyCodeJOJO/issues/f6ea9)
+
+
+
 ## [2025.6.5](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.4...v2025.6.5) (2025-06-13)
 
 
