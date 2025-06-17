@@ -1,3 +1,17 @@
+## [2025.6.8](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.7...v2025.6.8) (2025-06-17)
+
+
+### 🐛 修复
+
+* **extension:** 移除冗余的 choseTheme 调用 ([c7d7741](https://github.com/SakuraMYK/PyCodeJOJO/commit/c7d7741))
+
+
+### 📝 文档
+
+* **README:** 更新文档并调整功能描述 ([61883da](https://github.com/SakuraMYK/PyCodeJOJO/commit/61883da))
+
+
+
 ## [2025.6.7](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.6...v2025.6.7) (2025-06-17)
 
 
