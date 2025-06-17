@@ -82,8 +82,6 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.ConfigurationTarget.Global
     );
     choseTheme();
-  } else {
-    choseTheme();
   }
 }
 
