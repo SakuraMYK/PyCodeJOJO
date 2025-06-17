@@ -23,11 +23,11 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 - 🔄 支持多种颜色格式(HEX, RGB, HSL) | Support multiple color formats (HEX, RGB, HSL)
 - 👀 实时颜色预览 | Real-time color preview
 
-#### ✨ 字体背景色设置 | Font Background Color
+#### ✨ 设置字体背景色 | Set Font Background Color
 
-- 🖌️ 自定义代码字体背景色 | Customize code font background color
-- 📖 提升代码可读性 | Improve code readability
-- 🎪 支持多种颜色设置 | Support various color settings
+1. ⚡ 通过命令面板或快捷键激活功能 | Activate via command palette or shortcut
+2. 📝 选择需要设置背景色的代码 | Select code for background color
+3. 🎨 从调色板中选择合适的背景色 | Choose suitable background color from palette
 
 ## 📥 安装 | Installation
 
@@ -38,23 +38,17 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 
 ## 📖 使用方法 | Usage
 
+### 🔧 设置参数 | Configure Settings
+
+1. ⌨️ 按下 `Ctrl + ,` 打开设置面板 | Press `Ctrl + ,` to open Settings
+2. 🔍 搜索 `>pycodejojo` 过滤配置项 | Search `>pycodejojo` to filter configurations
+3. 🛠️ 调整主题参数等 | Adjust many parameters
+
 ### 🎭 切换主题 | Switch Theme
 
 1. ⌨️ `Ctrl+Shift+P` 打开命令面板 | Open command palette
-2. 🔍 输入 "Preferences: Color Theme" | Type "Preferences: Color Theme"
+2. 🔍 输入 "Chose Theme" | Type "Chose Theme"
 3. ✨ 选择任意 PyCodeJoJo 主题 | Select any PyCodeJoJo theme
-
-### 🎨 使用颜色选择器 | Use Color Picker
-
-1. 🖱️ 在代码中右键 | Right-click in code
-2. 🎯 选择 "Pick Color" 选项 | Select "Pick Color" option
-3. 🎪 使用颜色选择器界面选择颜色 | Use color picker interface to select color
-
-### ✨ 设置字体背景色 | Set Font Background Color
-
-1. ⚡ 通过命令面板或快捷键激活功能 | Activate via command palette or shortcut
-2. 📝 选择需要设置背景色的代码 | Select code for background color
-3. 🎨 从调色板中选择合适的背景色 | Choose suitable background color from palette
 
 ## 🤝 贡献 | Contribution
 
