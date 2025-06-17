@@ -1,3 +1,17 @@
+## [2025.6.7](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.6...v2025.6.7) (2025-06-17)
+
+
+### ♻️ 重构
+
+* **extension:** 移除未使用的主题更新导入 ([1a0ce24](https://github.com/SakuraMYK/PyCodeJOJO/commit/1a0ce24))
+
+
+### 🎫 其他更新
+
+* **images:** 更新 kujojotaro_alpha 图片 ([a64cb6c](https://github.com/SakuraMYK/PyCodeJOJO/commit/a64cb6c))
+
+
+
 ## [2025.6.6](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.5...v2025.6.6) (2025-06-16)
 
 
