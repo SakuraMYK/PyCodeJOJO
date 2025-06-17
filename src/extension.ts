@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { ColorPicker } from "./features/colorPicker";
 import { FontBackgroundColor } from "./features/fontBackgroundColor";
 import { getHoverInfo } from "./features/hoverTranslate";
-import { choseTheme, themeUpdate } from "./features/themeManager";
+import { choseTheme } from "./features/themeManager";
 
 let enableFontBackgroundColor: boolean = true;
 let enableHoverTranslate: boolean = false;
