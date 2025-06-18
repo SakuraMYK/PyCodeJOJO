@@ -1,3 +1,12 @@
+## [2025.6.10](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.9...v2025.6.10) (2025-06-18)
+
+
+### ✨ 新特性
+
+* **theme:** 优化 Python 变量和关键字的代码高亮 ([0420f44](https://github.com/SakuraMYK/PyCodeJOJO/commit/0420f44))
+
+
+
 ## [2025.6.9](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.8...v2025.6.9) (2025-06-18)
 
 
