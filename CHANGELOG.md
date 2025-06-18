@@ -1,3 +1,17 @@
+## [2025.6.11](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.10...v2025.6.11) (2025-06-18)
+
+
+### ✨ 新特性
+
+* **colorPicker:** 分离 Hex 颜色匹配类型 ([5795ec9](https://github.com/SakuraMYK/PyCodeJOJO/commit/5795ec9))
+
+
+### 📝 文档
+
+* **README:** 添加操作示例和已知问题说明 ([664ecf6](https://github.com/SakuraMYK/PyCodeJOJO/commit/664ecf6))
+
+
+
 ## [2025.6.10](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.9...v2025.6.10) (2025-06-18)
 
 
