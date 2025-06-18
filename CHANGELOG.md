@@ -1,3 +1,12 @@
+## [2025.6.12](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.11...v2025.6.12) (2025-06-18)
+
+
+### 📝 文档
+
+* **README:** 更新已知问题说明，添加禁用 Pylance 取色器的方法 ([cae77c4](https://github.com/SakuraMYK/PyCodeJOJO/commit/cae77c4))
+
+
+
 ## [2025.6.11](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.10...v2025.6.11) (2025-06-18)
 
 
