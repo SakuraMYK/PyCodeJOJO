@@ -201,6 +201,20 @@
         "fontStyle": "italic",
         "foreground": "#cac395"
       }
+    },
+    {
+      "scope": ["variable.language.special.self.python"],
+      "settings": {
+        "fontStyle": "italic",
+        "foreground": "#b87e03"
+      }
+    },
+    {
+      "scope": ["keyword.control.flow.python"],
+      "settings": {
+        "fontStyle": "italic bold",
+        "foreground": "#e0c91d"
+      }
     }
   ]
 }
