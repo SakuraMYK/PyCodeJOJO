@@ -4,6 +4,36 @@ PyCodeJoJo 是一个功能丰富的 VSCode 扩展，提供了多个变形金刚�
 
 PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers and Superhero themes, along with several useful coding utilities.
 
+## 🎬 操作示例 | Operation Examples
+
+![取色器演示 | Color Picker Demo](images/GIF/colorPicker.gif)
+
+## ⚠️ 已知问题 | Known Issues
+
+当同时使用 PyCodeJoJo 和 Pylance 时，Python 文件中的颜色字符串会在其左侧出现两个取色器色块。这是因为 Pylance 有自己的取色器实现，但仅支持 .py 文件中的 "#ffffff" 和 "#ffffffff" 两种格式。当你同时启用这两个插件时，会在相同位置左侧看到两个取色器。
+
+When using PyCodeJoJo alongside Pylance, you may notice two color pickers appearing on the left side of color strings in Python files. This is because Pylance has its own color picker implementation that only supports "#ffffff" and "#ffffffff" formats in .py files. When both extensions are enabled, you will see two color pickers in the same position.
+
+PyCodeJoJo 提供更全面的取色器支持：
+PyCodeJoJo offers more comprehensive color picking support with:
+
+- Support for all file types (not just .py files)
+- Support for 7 different color formats:
+  - #fff
+  - #ffffff
+  - #ffffffff (with alpha channel)
+  - rgb(X, X, X)
+  - rgba(X, X, X, X)
+  - (X, X, X)
+  - (X, X, X, X)
+
+你可以通过 VSCode 设置自定义启用的功能：
+You can customize which features are enabled through VSCode settings:
+
+1. 按下 `Ctrl+,`（Mac 上为 `Cmd+,`） | Press `Ctrl+,` (or `Cmd+,` on Mac)
+2. 搜索 ">pycodejojo" | Search for ">pycodejojo"
+3. 根据需要开启或关闭特定功能 | Toggle specific features as needed
+
 ## ⭐ 特性 | Features
 
 ### 🎨 主题集合 | Theme Collection
