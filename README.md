@@ -10,9 +10,15 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 
 ## ⚠️ 已知问题 | Known Issues
 
-当同时使用 PyCodeJoJo 和 Pylance 时，Python 文件中的颜色字符串会在其左侧出现两个取色器色块。这是因为 Pylance 有自己的取色器实现，但仅支持 .py 文件中的 "#ffffff" 和 "#ffffffff" 两种格式。当你同时启用这两个插件时，会在相同位置左侧看到两个取色器。
+当同时使用 PyCodeJoJo 和 Pylance 时，Python 文件中的颜色字符串会在其左侧出现两个取色器色块。这是因为 Pylance 有自己的取色器实现，但仅支持 .py 文件中的 "#ffffff" 和 "#ffffffff" 两种格式。如果你想只保留一个取色器，可以通过以下步骤关闭 Pylance 的取色器功能：
+1. 按下 `Ctrl + ,` 打开设置
+2. 在搜索框中输入 `python.analysis.enableColorPicker`
+3. 取消勾选该选项即可关闭 Pylance 的取色器
 
-When using PyCodeJoJo alongside Pylance, you may notice two color pickers appearing on the left side of color strings in Python files. This is because Pylance has its own color picker implementation that only supports "#ffffff" and "#ffffffff" formats in .py files. When both extensions are enabled, you will see two color pickers in the same position.
+When using PyCodeJoJo alongside Pylance, you may notice two color pickers appearing on the left side of color strings in Python files. This is because Pylance has its own color picker implementation that only supports "#ffffff" and "#ffffffff" formats in .py files. If you want to keep only one color picker, you can disable Pylance's color picker by:
+1. Press `Ctrl + ,` to open settings
+2. Search for `python.analysis.enableColorPicker`
+3. Uncheck this option to disable Pylance's color picker
 
 PyCodeJoJo 提供更全面的取色器支持：
 PyCodeJoJo offers more comprehensive color picking support with:
