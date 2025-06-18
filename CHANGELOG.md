@@ -1,3 +1,12 @@
+## [2025.6.9](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.8...v2025.6.9) (2025-06-18)
+
+
+### ✨ 新特性
+
+* **theme:** 优化 BumbleBee 主题样式 ([52a3c02](https://github.com/SakuraMYK/PyCodeJOJO/commit/52a3c02)), closes [#d1d1d1](https://github.com/SakuraMYK/PyCodeJOJO/issues/d1d1d1) [#aa8726](https://github.com/SakuraMYK/PyCodeJOJO/issues/aa8726) [#f86903](https://github.com/SakuraMYK/PyCodeJOJO/issues/f86903) [#ffe600](https://github.com/SakuraMYK/PyCodeJOJO/issues/ffe600)
+
+
+
 ## [2025.6.8](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.7...v2025.6.8) (2025-06-17)
 
 
