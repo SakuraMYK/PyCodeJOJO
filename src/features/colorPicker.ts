@@ -11,7 +11,9 @@ const reTupleRGB =
 const reTupleRGBA =
   /(?<!rgb)(?<!rgba)\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3}|1|0|0\.\d+)\s*\)/gs;
 
-const reHex = /#([0-9A-Fa-f]{8}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})\b/gs;
+const reHex3 = /#([0-9A-Fa-f]{3})\b/gs;
+const reHex6 = /#([0-9A-Fa-f]{6})\b/gs;
+const reHex8 = /#([0-9A-Fa-f]{8})\b/gs;
 
 interface ColorMap {
   range: vscode.Range;
@@ -23,7 +25,9 @@ export interface EnableMap {
   Enable: boolean;
   MatchRGB: boolean;
   MatchTupleRGB: boolean;
-  MatchHex: boolean;
+  MatchHex3: boolean;
+  MatchHex6: boolean;
+  MatchHex8: boolean;
 }
 
 export class ColorPicker implements vscode.DocumentColorProvider {
@@ -31,7 +35,9 @@ export class ColorPicker implements vscode.DocumentColorProvider {
     Enable: true,
     MatchRGB: true,
     MatchTupleRGB: true,
-    MatchHex: true,
+    MatchHex3: true,
+    MatchHex6: true,
+    MatchHex8: true,
   };
 
   provideDocumentColors(
@@ -114,7 +120,9 @@ export function getColorMaps(
     maps.push(...getRGBMaps(document), ...getRGBAMaps(document));
   if (enable.MatchTupleRGB)
     maps.push(...getTupleRGBMaps(document), ...getTupleRGBAMaps(document));
-  if (enable.MatchHex) maps.push(...getHexMaps(document));
+  if (enable.MatchHex3) maps.push(...getHex3Maps(document));
+  if (enable.MatchHex6) maps.push(...getHex6Maps(document));
+  if (enable.MatchHex8) maps.push(...getHex8Maps(document));
   return maps;
 }
 
@@ -237,25 +245,37 @@ function getTupleRGBAMaps(document: vscode.TextDocument): ColorMap[] {
   return maps;
 }
 
-function getHexMaps(document: vscode.TextDocument): ColorMap[] {
-  function mapsPush(
-    start: vscode.Position,
-    end: vscode.Position,
-    text: string,
-    R: number,
-    G: number,
-    B: number,
-    A: number
-  ): void {
+function getHex3Maps(document: vscode.TextDocument): ColorMap[] {
+  const maps: ColorMap[] = [];
+  const matches = [...document.getText().matchAll(reHex3)];
+  for (const match of matches) {
+    const s = match.index;
+    const e = match.index + match[0].length;
+    const start = document.positionAt(s);
+    const end = document.positionAt(e);
+    const hex = match[1];
+    const text = match[0].toLowerCase();
+
+    let R;
+    let G;
+    let B;
+    let A;
+
+    R = parseInt(hex[0] + hex[0], 16);
+    G = parseInt(hex[1] + hex[1], 16);
+    B = parseInt(hex[2] + hex[2], 16);
+    A = 1;
     maps.push({
       range: new vscode.Range(start, end),
       text: text,
       color: new vscode.Color(R / 255, G / 255, B / 255, A),
     });
   }
-
+  return maps;
+}
+function getHex6Maps(document: vscode.TextDocument): ColorMap[] {
   const maps: ColorMap[] = [];
-  const matches = [...document.getText().matchAll(reHex)];
+  const matches = [...document.getText().matchAll(reHex6)];
   for (const match of matches) {
     const s = match.index;
     const e = match.index + match[0].length;
@@ -270,29 +290,44 @@ function getHexMaps(document: vscode.TextDocument): ColorMap[] {
     let B;
     let A;
 
-    switch (hexLength) {
-      case 3:
-        R = parseInt(hex[0] + hex[0], 16);
-        G = parseInt(hex[1] + hex[1], 16);
-        B = parseInt(hex[2] + hex[2], 16);
-        A = 1;
-        mapsPush(start, end, text, R, G, B, A);
-        break;
-      case 6:
-        R = parseInt(hex.substring(0, 2), 16);
-        G = parseInt(hex.substring(2, 4), 16);
-        B = parseInt(hex.substring(4, 6), 16);
-        A = 1;
-        mapsPush(start, end, text, R, G, B, A);
-        break;
-      case 8:
-        R = parseInt(hex.substring(0, 2), 16);
-        G = parseInt(hex.substring(2, 4), 16);
-        B = parseInt(hex.substring(4, 6), 16);
-        A = parseInt(hex.substring(6, 8), 16) / 255;
-        mapsPush(start, end, text, R, G, B, A);
-        break;
-    }
+    R = parseInt(hex.substring(0, 2), 16);
+    G = parseInt(hex.substring(2, 4), 16);
+    B = parseInt(hex.substring(4, 6), 16);
+    A = 1;
+    maps.push({
+      range: new vscode.Range(start, end),
+      text: text,
+      color: new vscode.Color(R / 255, G / 255, B / 255, A),
+    });
+  }
+  return maps;
+}
+function getHex8Maps(document: vscode.TextDocument): ColorMap[] {
+  const maps: ColorMap[] = [];
+  const matches = [...document.getText().matchAll(reHex8)];
+  for (const match of matches) {
+    const s = match.index;
+    const e = match.index + match[0].length;
+    const start = document.positionAt(s);
+    const end = document.positionAt(e);
+    const hex = match[1];
+    const hexLength = hex.length;
+    const text = match[0].toLowerCase();
+
+    let R;
+    let G;
+    let B;
+    let A;
+
+    R = parseInt(hex.substring(0, 2), 16);
+    G = parseInt(hex.substring(2, 4), 16);
+    B = parseInt(hex.substring(4, 6), 16);
+    A = parseInt(hex.substring(6, 8), 16) / 255;
+    maps.push({
+      range: new vscode.Range(start, end),
+      text: text,
+      color: new vscode.Color(R / 255, G / 255, B / 255, A),
+    });
   }
   return maps;
 }

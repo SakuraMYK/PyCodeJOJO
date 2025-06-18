@@ -50,11 +50,23 @@ export function activate(context: vscode.ExtensionContext) {
         colorPicker.enableMap.MatchTupleRGB = match;
         fontBackgroundColor.enableMap.MatchTupleRGB = match;
       }
-      if (event.affectsConfiguration("Pycodejojo.ColorPicker.MatchHex")) {
-        const match = config.get("Pycodejojo.ColorPicker.MatchHex", true);
-        colorPicker.enableMap.MatchHex = match;
-        fontBackgroundColor.enableMap.MatchHex = match;
+
+      if (event.affectsConfiguration("Pycodejojo.ColorPicker.MatchHex3")) {
+        const match = config.get("Pycodejojo.ColorPicker.MatchHex3", true);
+        colorPicker.enableMap.MatchHex3 = match;
+        fontBackgroundColor.enableMap.MatchHex3 = match;
       }
+      if (event.affectsConfiguration("Pycodejojo.ColorPicker.MatchHex6")) {
+        const match = config.get("Pycodejojo.ColorPicker.MatchHex6", true);
+        colorPicker.enableMap.MatchHex6 = match;
+        fontBackgroundColor.enableMap.MatchHex6 = match;
+      }
+      if (event.affectsConfiguration("Pycodejojo.ColorPicker.MatchHex8")) {
+        const match = config.get("Pycodejojo.ColorPicker.MatchHex8", true);
+        colorPicker.enableMap.MatchHex8 = match;
+        fontBackgroundColor.enableMap.MatchHex8 = match;
+      }
+
       if (event.affectsConfiguration("Pycodejojo.FontBackgroundColor.Enable")) {
         const match = config.get("Pycodejojo.FontBackgroundColor.Enable", true);
         fontBackgroundColor.enableMap.Enable = match;

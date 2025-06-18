@@ -120,10 +120,20 @@
           "default": true,
           "description": "Match RGB Tuples (x, x, x) | (x, x, x, x)"
         },
-        "Pycodejojo.ColorPicker.MatchHex": {
+        "Pycodejojo.ColorPicker.MatchHex3": {
           "type": "boolean",
           "default": true,
-          "description": "Match Hex Color #FFFFFF | #FFFFFFFF | #FFF"
+          "description": "Match 3-digit Hex Color #FFF"
+        },
+        "Pycodejojo.ColorPicker.MatchHex6": {
+          "type": "boolean",
+          "default": true,
+          "description": "Match 6-digit Hex Color #FFFFFF"
+        },
+        "Pycodejojo.ColorPicker.MatchHex8": {
+          "type": "boolean",
+          "default": true,
+          "description": "Match 8-digit Hex Color #FFFFFFFF (with alpha)"
         },
         "Pycodejojo.FontBackgroundColor.Enable": {
           "type": "boolean",

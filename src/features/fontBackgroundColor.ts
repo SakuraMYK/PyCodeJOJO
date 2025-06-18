@@ -8,7 +8,9 @@ export class FontBackgroundColor {
     Enable: true,
     MatchRGB: true,
     MatchTupleRGB: true,
-    MatchHex: true,
+    MatchHex3: true,
+    MatchHex6: true,
+    MatchHex8: true,
   };
 
   public update(editor: vscode.TextEditor | undefined) {
