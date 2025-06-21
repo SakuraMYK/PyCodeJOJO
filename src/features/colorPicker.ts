@@ -3,13 +3,13 @@ import vscode from "vscode";
 const reRGB = /rgb\((\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)/gs;
 
 const reRGBA =
-  /rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3}|1|0|0\.\d+)\s*\)/gs;
+  /rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3}|\d\.\d+)\s*\)/gs;
 
 const reTupleRGB =
   /(?<!rgb)(?<!rgba)\((\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)/gs;
 
 const reTupleRGBA =
-  /(?<!rgb)(?<!rgba)\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3}|1|0|0\.\d+)\s*\)/gs;
+  /(?<!rgb)(?<!rgba)\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3}|\d\.\d+)\s*\)/gs;
 
 const reHex3 = /#([0-9A-Fa-f]{3})\b/gs;
 const reHex6 = /#([0-9A-Fa-f]{6})\b/gs;
@@ -74,9 +74,11 @@ function formatColor(
     /rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3}|\d\.\d+)\s*\)/;
   const tupleRgba =
     /(?<!rgb)(?<!rgba)\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3}|\d\.\d+)\s*\)/;
+  const hex8 = /#([0-9A-Fa-f]{8})\b/;
 
   const matchRGBA = rgba.exec(string);
   const matchTupleRGBA = tupleRgba.exec(string);
+  const matchHexAlpha = hex8.exec(string);
 
   const r = color.red * 255;
   const g = color.green * 255;
@@ -88,38 +90,56 @@ function formatColor(
 
   let a;
 
-  const hexA = Math.round(color.alpha * 255).toString(16);
+  const floatAlpha = color.alpha.toFixed(2); // 保留两位小数
+  const intAlpha = Math.round(color.alpha * 255);
+  const hexAlpha = Math.round(color.alpha * 255).toString(16);
 
   // 由于 color.alpha 的值范围只能是 0-1，所以此处需要重新判断具体格式从而保持元数据格式一致
   if (matchTupleRGBA) {
     if (matchTupleRGBA[4].includes(".") || matchTupleRGBA[4] === "1") {
       // 判断为浮点类型 按照 0~1 范围转化alpha值
-      a = color.alpha.toFixed(2); // 保留两位小数
+      a = floatAlpha;
     } else {
       // 按照 1~255 范围转化alpha值
-      a = Math.round(color.alpha * 255);
+      a = intAlpha;
     }
     return [new vscode.ColorPresentation(`(${r}, ${g}, ${b}, ${a})`)];
   } else if (matchRGBA) {
     if (matchRGBA[4].includes(".") || matchRGBA[4] === "1") {
       // 判断为浮点类型 按照 0~1 范围转化alpha值
-      a = color.alpha.toFixed(2); // 保留两位小数
+      a = floatAlpha;
     } else {
       // 按照 1~255 范围转化alpha值
-      a = Math.round(color.alpha * 255);
+      a = intAlpha;
     }
     return [new vscode.ColorPresentation(`rgba(${r}, ${g}, ${b}, ${a})`)];
+  } else if (matchHexAlpha) {
+    return [new vscode.ColorPresentation(`#${hexR}${hexG}${hexB}${hexAlpha}`)];
   } else {
     // 其他格式
-    if (string.startsWith("(")) {
-      return [new vscode.ColorPresentation(`(${r}, ${g}, ${b})`)];
-    } else if (string.startsWith("rgb")) {
-      return [new vscode.ColorPresentation(`rgb(${r}, ${g}, ${b})`)];
-    } else {
-      if (string.length === 8) {
-        return [new vscode.ColorPresentation(`#${hexR}${hexG}${hexB}${hexA}`)];
+    if (color.alpha === 1) {
+      // 用户未改动alpha值时
+      if (string.startsWith("(")) {
+        return [new vscode.ColorPresentation(`(${r}, ${g}, ${b})`)];
+      } else if (string.startsWith("rgb")) {
+        return [new vscode.ColorPresentation(`rgb(${r}, ${g}, ${b})`)];
       } else {
         return [new vscode.ColorPresentation(`#${hexR}${hexG}${hexB}`)];
+      }
+    } else {
+      // 用户改动alpha值时，返回对应带alpha通道的格式
+      if (string.startsWith("(")) {
+        return [
+          new vscode.ColorPresentation(`(${r}, ${g}, ${b}, ${intAlpha})`),
+        ];
+      } else if (string.startsWith("rgb")) {
+        return [
+          new vscode.ColorPresentation(`rgba(${r}, ${g}, ${b}, ${intAlpha})`),
+        ];
+      } else {
+        return [
+          new vscode.ColorPresentation(`#${hexR}${hexG}${hexB}${hexAlpha}`),
+        ];
       }
     }
   }
