@@ -1,3 +1,12 @@
+## [2025.6.15](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.14...v2025.6.15) (2025-06-21)
+
+
+### 🎫 其他更新
+
+* **images:** 更新 colorPicker.gif 并删除 kujojotaro.png ([198929a](https://github.com/SakuraMYK/PyCodeJOJO/commit/198929a))
+
+
+
 ## [2025.6.14](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.13...v2025.6.14) (2025-06-21)
 
 
