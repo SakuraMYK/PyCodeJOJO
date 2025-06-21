@@ -70,6 +70,14 @@ function formatColor(
   const { document, range } = context;
   const string = document.getText(range);
 
+  const rgba =
+    /rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3}|\d\.\d+)\s*\)/;
+  const tupleRgba =
+    /(?<!rgb)(?<!rgba)\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3}|\d\.\d+)\s*\)/;
+
+  const matchRGBA = rgba.exec(string);
+  const matchTupleRGBA = tupleRgba.exec(string);
+
   const r = color.red * 255;
   const g = color.green * 255;
   const b = color.blue * 255;
@@ -79,35 +87,41 @@ function formatColor(
   const hexB = b.toString(16).padStart(2, "0");
 
   let a;
-  let hexA;
-  let prefix;
 
-  if (color.alpha === 1) {
-    a = "";
-    hexA = "";
-    prefix = "rgb";
-  } else if (color.alpha === 0) {
-    a = ", 0";
-    hexA = "00";
-    prefix = "rgba";
+  const hexA = Math.round(color.alpha * 255).toString(16);
+
+  // 由于 color.alpha 的值范围只能是 0-1，所以此处需要重新判断具体格式从而保持元数据格式一致
+  if (matchTupleRGBA) {
+    if (matchTupleRGBA[4].includes(".") || matchTupleRGBA[4] === "1") {
+      // 判断为浮点类型 按照 0~1 范围转化alpha值
+      a = color.alpha.toFixed(2); // 保留两位小数
+    } else {
+      // 按照 1~255 范围转化alpha值
+      a = Math.round(color.alpha * 255);
+    }
+    return [new vscode.ColorPresentation(`(${r}, ${g}, ${b}, ${a})`)];
+  } else if (matchRGBA) {
+    if (matchRGBA[4].includes(".") || matchRGBA[4] === "1") {
+      // 判断为浮点类型 按照 0~1 范围转化alpha值
+      a = color.alpha.toFixed(2); // 保留两位小数
+    } else {
+      // 按照 1~255 范围转化alpha值
+      a = Math.round(color.alpha * 255);
+    }
+    return [new vscode.ColorPresentation(`rgba(${r}, ${g}, ${b}, ${a})`)];
   } else {
-    a = `, ${color.alpha.toFixed(2)}`;
-    hexA = Math.round(color.alpha * 255).toString(16);
-    prefix = "rgba";
-  }
-
-  const labels = {
-    tuple: `(${r}, ${g}, ${b}${a})`,
-    rgb: `${prefix}(${r}, ${g}, ${b}${a})`,
-    hex: `#${hexR}${hexG}${hexB}${hexA}`,
-  };
-
-  if (string.startsWith("(")) {
-    return [new vscode.ColorPresentation(labels.tuple)];
-  } else if (string.startsWith("rgb")) {
-    return [new vscode.ColorPresentation(labels.rgb)];
-  } else {
-    return [new vscode.ColorPresentation(labels.hex)];
+    // 其他格式
+    if (string.startsWith("(")) {
+      return [new vscode.ColorPresentation(`(${r}, ${g}, ${b})`)];
+    } else if (string.startsWith("rgb")) {
+      return [new vscode.ColorPresentation(`rgb(${r}, ${g}, ${b})`)];
+    } else {
+      if (string.length === 8) {
+        return [new vscode.ColorPresentation(`#${hexR}${hexG}${hexB}${hexA}`)];
+      } else {
+        return [new vscode.ColorPresentation(`#${hexR}${hexG}${hexB}`)];
+      }
+    }
   }
 }
 
