@@ -1,3 +1,14 @@
+## [2025.6.13](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.12...v2025.6.13) (2025-06-21)
+
+
+### ✨ 新特性
+
+* **colorPicker:** 优化颜色格式转换逻辑 ([415e5f6](https://github.com/SakuraMYK/PyCodeJOJO/commit/415e5f6))
+* **colorPicker:** 支持带 alpha 通道的颜色格式 ([187da4c](https://github.com/SakuraMYK/PyCodeJOJO/commit/187da4c))
+* **readme:** 更新功能描述并添加新主题 ([922b718](https://github.com/SakuraMYK/PyCodeJOJO/commit/922b718))
+
+
+
 ## [2025.6.12](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.11...v2025.6.12) (2025-06-18)
 
 
