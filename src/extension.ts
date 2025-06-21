@@ -24,10 +24,14 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }),
     vscode.window.onDidChangeActiveTextEditor((editor) => {
-      if (enableFontBackgroundColor) fontBackgroundColor.update(editor);
+      if (enableFontBackgroundColor) {
+        fontBackgroundColor.update(editor);
+      }
     }),
     vscode.window.onDidChangeTextEditorSelection(async (event) => {
-      if (enableHoverTranslate) getHoverInfo(event);
+      if (enableHoverTranslate) {
+        getHoverInfo(event);
+      }
     }),
     vscode.commands.registerCommand("Pycodejojo.ChoseTheme", async () => {
       choseTheme();
