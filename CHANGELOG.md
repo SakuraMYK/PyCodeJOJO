@@ -1,3 +1,17 @@
+## [2025.6.16](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.15...v2025.6.16) (2025-06-22)
+
+
+### 💄 样式
+
+* 添加代码缩进以提高可读性 ([67f8f56](https://github.com/SakuraMYK/PyCodeJOJO/commit/67f8f56))
+
+
+### 📝 文档
+
+* **README:** 更新文档结构并添加新功能说明 ([daadaad](https://github.com/SakuraMYK/PyCodeJOJO/commit/daadaad))
+
+
+
 ## [2025.6.15](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.14...v2025.6.15) (2025-06-21)
 
 
