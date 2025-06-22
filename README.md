@@ -4,27 +4,17 @@ PyCodeJoJo 是一个功能丰富的 VSCode 扩展，提供了多个变形金刚�
 
 PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers and Superhero themes, along with several useful coding utilities.
 
-## 🎬 操作示例 | Operation Examples
-
-![取色器演示 | Color Picker Demo](images/GIF/colorPicker.gif)
-
-## ⚠️ 已知问题 | Known Issues
-
-当同时使用 PyCodeJoJo 和 Pylance 插件时，Python 文件中的颜色字符串可能会在左侧出现两个取色器色块，导致界面混乱。如果你希望避免这种混乱局面，可以通过以下步骤关闭 Pylance 的取色器功能：
-
-1. 按下 `Ctrl + ,` 打开设置
-2. 在搜索框中输入 `python.analysis.enableColorPicker`
-3. 取消勾选该选项即可关闭 Pylance 的取色器
-
-When using PyCodeJoJo alongside Pylance, you may notice two color pickers appearing on the left side of color strings in Python files, causing visual clutter. To avoid this confusion, you can disable Pylance's color picker by:
-
-1. Press `Ctrl + ,` to open settings
-2. Search for `python.analysis.enableColorPicker`
-3. Uncheck this option to disable Pylance's color picker
-
 ## ⭐ 特性 | Features
 
-### 🎨 主题集合 | Theme Collection
+### 🎭 切换主题 | Switch Theme
+
+![主题切换演示 | Theme Switching Demo](images/GIF/switchTheme.gif)
+
+1. ⌨️ `Ctrl+Shift+P` 打开命令面板 | Open command palette
+2. 🔍 输入 "Chose Theme" | Type "Chose Theme"
+3. ✨ 选择任意 PyCodeJoJo 主题 | Select any PyCodeJoJo theme
+
+### 🎨 可用主题 | Theme Collection
 
 - 🤖 **Iron Man Mark 3** - 钢铁侠经典配色
 - 🐝 **Bumblebee** - 大黄蜂明亮配色
@@ -35,6 +25,10 @@ When using PyCodeJoJo alongside Pylance, you may notice two color pickers appear
 - 🌳 **Emerald Forest** - 翡翠森林主题
 
 ### 🛠️ 功能特性 | Features
+
+### 使用示例 | Usage Examples
+
+![取色器演示 | Color Picker Demo](images/GIF/colorPicker.gif)
 
 #### 🎯 颜色选择器 | Color Picker
 
@@ -57,39 +51,29 @@ You can customize which features are enabled through VSCode settings:
 2. 搜索 ">pycodejojo" | Search for ">pycodejojo"
 3. 根据需要开启或关闭特定功能 | Toggle specific features as needed
 
-#### ✨ 设置字体背景色 | Set Font Background Color
+## 📖 功能的启用与关闭 | Enable and Disable Features
 
-1. ⚡ 通过命令面板或快捷键激活功能 | Activate via command palette or shortcut
-2. 📝 选择需要设置背景色的代码 | Select code for background color
-3. 🎨 从调色板中选择合适的背景色 | Choose suitable background color from palette
-
-## 📥 安装 | Installation
-
-1. 🚀 打开 VS Code | Open VS Code
-2. ⌨️ 按下 `Ctrl+Shift+X` 打开扩展栏 | Press `Ctrl+Shift+X` to open Extensions
-3. 🔍 搜索 `pycodejojo` | Search for `pycodejojo`
-4. ✅ 点击安装 | Click Install
-
-## 📖 使用方法 | Usage
-
-### 🔧 设置参数 | Configure Settings
+![设置面板演示 | Settings Panel Demo](images/GIF/showSettings.gif)
 
 1. ⌨️ 按下 `Ctrl + ,` 打开设置面板 | Press `Ctrl + ,` to open Settings
 2. 🔍 搜索 `>pycodejojo` 过滤配置项 | Search `>pycodejojo` to filter configurations
-3. 🛠️ 调整主题参数等 | Adjust many parameters
 
-### 🎭 切换主题 | Switch Theme
+## ⚠️ 已知问题 | Known Issues
 
-1. ⌨️ `Ctrl+Shift+P` 打开命令面板 | Open command palette
-2. 🔍 输入 "Chose Theme" | Type "Chose Theme"
-3. ✨ 选择任意 PyCodeJoJo 主题 | Select any PyCodeJoJo theme
+当同时使用 PyCodeJoJo 和 Pylance 插件时，Python 文件中的颜色字符串可能会在左侧出现两个取色器色块，导致界面混乱。如果你希望避免这种混乱局面，可以通过以下步骤关闭 Pylance 的取色器功能：
+
+1. 按下 `Ctrl + ,` 打开设置
+2. 在搜索框中输入 `python.analysis.enableColorPicker`
+3. 取消勾选该选项即可关闭 Pylance 的取色器
+
+When using PyCodeJoJo alongside Pylance, you may notice two color pickers appearing on the left side of color strings in Python files, causing visual clutter. To avoid this confusion, you can disable Pylance's color picker by:
+
+1. Press `Ctrl + ,` to open settings
+2. Search for `python.analysis.enableColorPicker`
+3. Uncheck this option to disable Pylance's color picker
 
 ## 🤝 贡献 | Contribution
 
 欢迎提交问题和功能建议到 GitHub 仓库
 Welcome to submit issues and feature suggestions to GitHub repository:
 [GitHub Repository](https://github.com/yourusername/pycodejojo)
-
-## 📝 更新日志 | Changelog
-
-详见 | See [CHANGELOG.md](CHANGELOG.md)

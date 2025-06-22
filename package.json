@@ -118,8 +118,8 @@
     "commands": [
       {
         "category": "PyCodeJOJO",
-        "command": "Pycodejojo.ChoseTheme",
-        "title": "chose Theme"
+        "command": "Pycodejojo.SwitchTheme",
+        "title": "Switch Theme"
       }
     ],
     "configuration": {

@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import { ColorPicker } from "./features/colorPicker";
 import { FontBackgroundColor } from "./features/fontBackgroundColor";
 import { getHoverInfo } from "./features/hoverTranslate";
-import { choseTheme } from "./features/themeManager";
+import { switchTheme } from "./features/themeManager";
 
 let enableFontBackgroundColor: boolean = true;
 let enableHoverTranslate: boolean = false;
@@ -33,8 +33,8 @@ export function activate(context: vscode.ExtensionContext) {
         getHoverInfo(event);
       }
     }),
-    vscode.commands.registerCommand("Pycodejojo.ChoseTheme", async () => {
-      choseTheme();
+    vscode.commands.registerCommand("Pycodejojo.SwitchTheme", async () => {
+      switchTheme();
     }),
 
     vscode.workspace.onDidChangeConfiguration((event) => {
@@ -97,7 +97,7 @@ export function activate(context: vscode.ExtensionContext) {
       true,
       vscode.ConfigurationTarget.Global
     );
-    choseTheme();
+    switchTheme();
   }
 }
 
