@@ -1,4 +1,4 @@
-import vscode from "vscode";
+import * as vscode from "vscode";
 import { getColorMaps, EnableMap } from "./colorPicker";
 import { resourceUsage } from "process";
 

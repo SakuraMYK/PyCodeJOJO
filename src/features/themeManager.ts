@@ -1,4 +1,4 @@
-import vscode from "vscode";
+import * as vscode from "vscode";
 
 const config = vscode.workspace.getConfiguration();
 
@@ -38,7 +38,7 @@ export function switchTheme() {
   quickPick.canSelectMany = false;
 
   // 监听选择变化事件 - 实时切换主题
-  quickPick.onDidChangeActive((items) => {
+  quickPick.onDidChangeActive((items: any) => {
     if (items.length > 0) {
       const selectedItem = items[0];
       themeUpdate(selectedItem.label);
