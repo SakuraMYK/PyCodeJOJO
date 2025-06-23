@@ -49,6 +49,7 @@
     "lint": "eslint src"
   },
   "devDependencies": {
+    "@types/vscode": "^1.101.0",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
     "compare-func": "^2.0.0",
