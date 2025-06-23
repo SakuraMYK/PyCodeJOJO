@@ -1,6 +1,5 @@
 .vscode/
 node_modules/
-out/
 src/
 .git/
 .gitignore
@@ -11,3 +10,4 @@ tsconfig.json
 vsc-extension-quickstart.md
 .vscode-test.mjs
 *.vsix
+**/*.js.map
