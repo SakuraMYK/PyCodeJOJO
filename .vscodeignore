@@ -9,6 +9,6 @@ eslint.config.mjs
 package-lock.json
 tsconfig.json
 vsc-extension-quickstart.md
-webpack.config.js
 .vscode-test.mjs
 *.vsix
+*.js
