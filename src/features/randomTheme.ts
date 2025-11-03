@@ -289,9 +289,22 @@ class ColorSystem {
       'titleBar.activeForeground': () => this.getForegroundColor(),
       'titleBar.inactiveForeground': () =>
         this.adjustColor(this.getForegroundColor(), -20),
-      'activityBar.foreground': () => this.getForegroundColor(),
-      'activityBar.inactiveForeground': () =>
-        this.adjustColor(this.getForegroundColor(), -20),
+      'activityBar.foreground': () => {
+        // 为活动图标使用更高对比度的颜色
+        const baseColor = this.getForegroundColor()
+        return this.ensureContrast(
+          baseColor,
+          this.getColorByKey('activityBar.background')
+        )
+      },
+      'activityBar.inactiveForeground': () => {
+        // 为非活动图标调整亮度，但确保足够对比度
+        const baseColor = this.adjustColor(this.getForegroundColor(), -10)
+        return this.ensureContrast(
+          baseColor,
+          this.getColorByKey('activityBar.background')
+        )
+      },
       'activityBarBadge.foreground': () => this.getForegroundColor(),
       'statusBar.foreground': () => this.getForegroundColor(),
       'statusBar.noFolderForeground': () => this.getForegroundColor(),
@@ -371,7 +384,7 @@ class ColorSystem {
       'widget.shadow': () =>
         this.blendColors('#000000', this.getBackgroundColor(), 0.4),
       'scrollbar.shadow': () =>
-        this.blendColors('#000000', this.getBackgroundColor(), 0.3),
+        this.blendColors('#834444', this.getBackgroundColor(), 0.3),
       'list.dropBackground': () =>
         this.blendColors(this.getAccentColor(), '#ffffff', 0.3),
       'listFilterWidget.shadow': () =>
