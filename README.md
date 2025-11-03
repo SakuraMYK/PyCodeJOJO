@@ -11,7 +11,7 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 ![主题切换演示 | Theme Switching Demo](images/GIF/switchTheme.gif)
 
 1. ⌨️ `Ctrl+Shift+P` 打开命令面板 | Open command palette
-2. 🔍 输入 "Chose Theme" | Type "Chose Theme"
+2. 🔍 输入 "Switch Theme" | Type "Switch Theme"
 3. ✨ 选择任意 PyCodeJoJo 主题 | Select any PyCodeJoJo theme
 
 ### 🎨 可用主题 | Theme Collection
@@ -24,7 +24,52 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 - 💎 **Purple Crystal/Phantom** - 紫色水晶/幻影系列主题
 - 🌳 **Emerald Forest** - 翡翠森林主题
 
+### 🎲 随机主题生成器 | Random Theme Generator
+
+智能生成和谐的随机主题，确保所有元素保持的对比度和可读性。
+Intelligently generates harmonious random themes, ensuring all elements maintain good contrast and readability.
+
+功能特点 | Features：
+
+- 🎨 智能颜色系统 | Smart Color System
+  - 自动生成和谐配色方案 | Automatically generates harmonious color schemes
+  - 支持深色/浅色主题自适应 | Adapts to dark/light themes
+  - 确保变量名高对比度显示 | Ensures high contrast for variable names
+- 🎯 对比度优化 | Contrast Optimization
+  - WCAG 标准对比度检查 | WCAG standard contrast checking
+  - 变量名对比度优化至 7:1 | Variable name contrast optimized to 7:1
+  - 智能调整亮度与饱和度 | Intelligent brightness and saturation adjustment
+- 🌈 丰富的颜色类型 | Rich Color Types
+  - 主色调（UI 元素）| Primary colors (UI elements)
+  - 辅助色（强调元素）| Secondary colors (accent elements)
+  - 语法高亮色 | Syntax highlighting colors
+  - 中性色（边框等）| Neutral colors (borders, etc.)
+
+使用方法 | Usage：
+
+1. ⌨️ `Ctrl+Shift+P` 打开命令面板 | Open command palette with `Ctrl+Shift+P`
+2. 🔍 输入 "Random Theme" | Type "Random Theme"
+3. ✨ 自动生成并应用新主题 | Automatically generates and applies new theme
+
 ### 🛠️ 功能特性 | Features
+
+### 🐍 Python **init**.py 生成器 | Python **init**.py Generator
+
+自动扫描当前目录下的 Python 文件，提取所有类名并生成/更新 `__init__.py` 文件。
+Automatically scans Python files in the current directory, extracts all class names, and generates/updates the `__init__.py` file.
+
+功能特点 | Features：
+
+- 📁 自动扫描目录下所有 Python 文件 | Automatically scans all Python files in the directory
+- 🔍 智能提取类定义 | Intelligently extracts class definitions
+- 📝 自动生成导入语句 | Automatically generates import statements
+- 🎯 仅在有 Python 文件时创建 `__init__.py` | Creates `__init__.py` only when Python files exist
+
+使用方法 | Usage：
+
+1. ⌨️ `Ctrl+Shift+P` 打开命令面板 | Open command palette with `Ctrl+Shift+P`
+2. 🔍 输入 "Generate Python Init" | Type "Generate Python Init"
+3. ✨ 自动生成/更新当前选中目录的 `__init__.py` | Automatically generates/updates `__init__.py` in current selected directory
 
 ### 使用示例 | Usage Examples
 
@@ -77,3 +122,7 @@ When using PyCodeJoJo alongside Pylance, you may notice two color pickers appear
 欢迎提交问题和功能建议到 GitHub 仓库
 Welcome to submit issues and feature suggestions to GitHub repository:
 [GitHub Repository](https://github.com/yourusername/pycodejojo)
+
+```
+
+```
