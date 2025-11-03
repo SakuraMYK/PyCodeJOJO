@@ -37,10 +37,25 @@ export function activate (context: vscode.ExtensionContext) {
         getHoverInfo(event)
       }
     }),
+
+    // ========= 注册命令 =========
     vscode.commands.registerCommand('Pycodejojo.SwitchTheme', async () => {
       switchTheme()
     }),
+    vscode.commands.registerCommand(
+      'Pycodejojo.GeneratePythonInitFile',
+      async () => {
+        generateInitForSelectedDirs()
+      }
+    ),
+    vscode.commands.registerCommand(
+      'Pycodejojo.DeleteAllPythonInitFile',
+      async () => {
+        deleteAllInitFiles(vscode.workspace.workspaceFolders![0].uri.fsPath)
+      }
+    ),
 
+    // ======== 注册事件 =========
     vscode.workspace.onDidChangeConfiguration(event => {
       const config = vscode.workspace.getConfiguration()
 

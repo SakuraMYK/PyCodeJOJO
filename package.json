@@ -113,6 +113,16 @@
         "category": "PyCodeJOJO",
         "command": "Pycodejojo.SwitchTheme",
         "title": "Switch Theme"
+      },
+      {
+        "category": "PyCodeJOJO",
+        "command": "Pycodejojo.GeneratePythonInitFile",
+        "title": "Generate Python __init__.py File"
+      },
+      {
+        "category": "PyCodeJOJO",
+        "command": "Pycodejojo.DeleteAllPythonInitFile",
+        "title": "Delete All Python __init__.py File"
       }
     ],
     "configuration": {
