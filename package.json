@@ -3,7 +3,7 @@
   "displayName": "PyCodeJOJO",
   "description": "VSCode with superhero themes and coding utilities",
   "icon": "images/kujojotaro_alpha.png",
-  "version": "2025.11.3",
+  "version": "2025.11.4",
   "engines": {
     "vscode": "^1.101.0"
   },
