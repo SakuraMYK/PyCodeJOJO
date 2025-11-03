@@ -145,7 +145,7 @@ class ColorSystem {
   /**
    * HSV转十六进制颜色
    */
-  private hsvToHex (h: number, s: number, v: number): string {
+  public hsvToHex (h: number, s: number, v: number): string {
     s /= 100
     v /= 100
 
@@ -441,7 +441,7 @@ class ColorSystem {
   /**
    * 十六进制转HSV
    */
-  private hexToHsv (hex: string): { h: number; s: number; v: number } {
+  public hexToHsv (hex: string): { h: number; s: number; v: number } {
     const rgb = this.hexToRgb(hex)
     const r = rgb.r / 255
     const g = rgb.g / 255
@@ -541,6 +541,9 @@ function replaceColorsInObject (
 /**
  * 专门处理tokenColors中的颜色
  */
+/**
+ * 专门处理tokenColors中的颜色，增强变量名对比度
+ */
 function replaceTokenColor (
   token: any,
   colorSystem: ColorSystem,
@@ -557,10 +560,39 @@ function replaceTokenColor (
       typeof newToken.settings.foreground === 'string' &&
       /^#([0-9A-Fa-f]{3}){1,2}$/.test(newToken.settings.foreground)
     ) {
-      const baseColor = colorSystem.getSyntaxColor(variation)
-      newToken.settings.foreground = colorSystem.ensureContrast(
+      let baseColor
+
+      // 增强变量名的对比度 - 检测变量相关的语法标记
+      const isVariable =
+        token.name &&
+        (token.name.includes('variable') ||
+          token.name.includes('identifier') ||
+          token.name.includes('property'))
+
+      if (isVariable) {
+        // 为变量使用更高对比度的颜色
+        baseColor = colorSystem.getSyntaxColor(variation)
+        const hsv = colorSystem.hexToHsv(baseColor)
+
+        // 增加饱和度和亮度对比度
+        hsv.s = Math.min(100, hsv.s + 15) // 提高饱和度
+        if (colorSystem['isDarkTheme']) {
+          hsv.v = Math.min(95, hsv.v + 10) // 深色主题提高亮度
+        } else {
+          hsv.v = Math.max(15, hsv.v - 10) // 浅色主题降低亮度
+        }
+        baseColor = colorSystem.hsvToHex(hsv.h, hsv.s, hsv.v)
+      } else {
+        baseColor = colorSystem.getSyntaxColor(variation)
+      }
+
+      // 强制确保变量名与背景的对比度至少为7:1（比标准更高）
+      const minContrast = isVariable ? 7 : 4.5
+      newToken.settings.foreground = ensureMinimumContrast(
         baseColor,
-        colorSystem.getBackgroundColor()
+        colorSystem.getBackgroundColor(),
+        minContrast,
+        colorSystem
       )
     }
 
@@ -577,6 +609,55 @@ function replaceTokenColor (
   }
 
   return newToken
+}
+
+/**
+ * 确保颜色间的最小对比度，特别是针对变量名
+ */
+function ensureMinimumContrast (
+  fgHex: string,
+  bgHex: string,
+  minContrast: number,
+  colorSystem: ColorSystem
+): string {
+  let currentContrast = calculateContrast(fgHex, bgHex)
+  let hsv = colorSystem.hexToHsv(fgHex)
+  const isDarkTheme = colorSystem['isDarkTheme']
+
+  // 如果对比度不足，逐步调整直到达到要求
+  while (currentContrast < minContrast) {
+    if (isDarkTheme) {
+      // 深色背景下提高前景色亮度
+      hsv.v = Math.min(100, hsv.v + 2)
+    } else {
+      // 浅色背景下降低前景色亮度
+      hsv.v = Math.max(0, hsv.v - 2)
+    }
+
+    // 同时略微提高饱和度增强辨识度
+    hsv.s = Math.min(100, hsv.s + 1)
+
+    fgHex = colorSystem.hsvToHex(hsv.h, hsv.s, hsv.v)
+    currentContrast = calculateContrast(fgHex, bgHex)
+
+    // 防止无限循环的安全机制
+    if (hsv.v >= 100 || hsv.v <= 0) break
+  }
+
+  return fgHex
+}
+
+/**
+ * 计算两种颜色的对比度（WCAG标准）
+ */
+function calculateContrast (fgHex: string, bgHex: string): number {
+  const fgLightness = hexToLightness(fgHex)
+  const bgLightness = hexToLightness(bgHex)
+
+  return (
+    (Math.max(fgLightness, bgLightness) + 0.05) /
+    (Math.min(fgLightness, bgLightness) + 0.05)
+  )
 }
 
 export async function randomizeThemeColors (context: vscode.ExtensionContext) {
