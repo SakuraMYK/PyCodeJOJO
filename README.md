@@ -105,7 +105,7 @@ You can customize which features are enabled through VSCode settings:
 
 ##### 颜色选择器使用示例 | Color Picker Usage Example
 
-![取色器演示 | Color Picker Demo](images/GIF/colorPicker.gif)
+![取色器演示 | Color Picker Demo](https://github.com/SakuraMYK/PyCodeJOJO/raw/11587addeade33a8d39fa908047ed455a3ba7d7f/images/GIF/colorPicker.gif)
 
 ## 📖 功能的启用与关闭 | Enable and Disable Features
 
