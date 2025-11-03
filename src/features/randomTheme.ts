@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 
+let firstRun = true
 // 生成具有足够对比度的随机颜色
 function getContrastingColor (baseLuminance: number = 0.5): string {
   // 目标对比度至少为4.5:1（符合WCAG AA标准）
@@ -81,13 +82,25 @@ export async function randomizeThemeColors (context: vscode.ExtensionContext) {
 
     fs.writeFileSync(themePath, newContent, 'utf8')
 
-    vscode.workspace.getConfiguration().update(
-      'workbench.colorTheme',
-      'Random', // 确保主题名称是英文
-      vscode.ConfigurationTarget.Global
-    )
+    if (firstRun) {
+      vscode.workspace
+        .getConfiguration()
+        .update(
+          'workbench.colorTheme',
+          'Default Dark+',
+          vscode.ConfigurationTarget.Global
+        )
+        firstRun = false
+    }
+    vscode.workspace
+      .getConfiguration()
+      .update(
+        'workbench.colorTheme',
+        'Random',
+        vscode.ConfigurationTarget.Global
+      )
 
-    vscode.window.showInformationMessage('Random theme updated successfully')
+    // vscode.window.showInformationMessage('Random theme updated successfully')
   } catch (error) {
     console.error(
       `Failed to process theme file: ${
