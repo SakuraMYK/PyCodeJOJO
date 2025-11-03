@@ -45,6 +45,17 @@ Automatically scans Python files in the current directory, extracts all class na
 
 ![Python **init**.py 生成器演示 | Python **init**.py Generator Demo](https://github.com/SakuraMYK/PyCodeJOJO/raw/master/images/GIF/generatePythonInitFile.gif)
 
+#### 🗑️ 删除所有**pycache**文件夹 | Delete All Pycache Folders
+
+一键删除当前工作区所有**pycache**文件夹及内部的缓存文件
+one click to delete all **pycache** folders and their internal cache files in the current workspace
+
+使用方法 | Usage：
+
+1. ⌨️ `Ctrl+Shift+P` 打开命令面板 | Open command palette with `Ctrl+Shift+P`
+2. 🔍 输入 "Delete All Pycache Folders" | Type "Delete All Pycache Folders"
+3. ✨ 自动删除所有**pycache**文件夹 | Automatically delete all **pycache** folders
+
 #### 🎯 颜色选择器 | Color Picker
 
 - 📚 全面的语言支持 | Comprehensive language support
