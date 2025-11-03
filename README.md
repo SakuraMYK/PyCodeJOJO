@@ -25,7 +25,7 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 2. 🔍 输入 "Switch Theme" | Type "Switch Theme"
 3. ✨ 选择任意 PyCodeJoJo 主题 | Select any PyCodeJoJo theme
 
-![主题切换演示 | Theme Switching Demo](images/GIF/switchTheme.gif)
+![主题切换演示 | Theme Switching Demo](https://github.com/SakuraMYK/PyCodeJOJO/raw/master/images/GIF/switchTheme.gif)
 
 ### 🎲 随机主题生成器 | Random Theme Generator
 
@@ -56,7 +56,7 @@ Intelligently generates harmonious random themes, ensuring all elements maintain
 
 ##### 使用示例 | Usage Examples
 
-![随机主题生成器演示 | Random Theme Generator Demo](images/GIF/randomTheme.gif)
+![随机主题生成器演示 | Random Theme Generator Demo](https://github.com/SakuraMYK/PyCodeJOJO/raw/master/images/GIF/randomTheme.gif)
 
 ### 🛠️ 功能特性 | Features
 
@@ -80,7 +80,7 @@ Automatically scans Python files in the current directory, extracts all class na
 
 ##### 使用示例 | Usage Examples
 
-![Python **init**.py 生成器演示 | Python **init**.py Generator Demo](images/GIF/generatePythonInitFile.gif)
+![Python **init**.py 生成器演示 | Python **init**.py Generator Demo](https://github.com/SakuraMYK/PyCodeJOJO/raw/master/images/GIF/generatePythonInitFile.gif)
 
 #### 🎯 颜色选择器 | Color Picker
 
@@ -105,11 +105,11 @@ You can customize which features are enabled through VSCode settings:
 
 ##### 颜色选择器使用示例 | Color Picker Usage Example
 
-![取色器演示 | Color Picker Demo](https://github.com/SakuraMYK/PyCodeJOJO/raw/11587addeade33a8d39fa908047ed455a3ba7d7f/images/GIF/colorPicker.gif)
+![取色器演示 | Color Picker Demo](https://github.com/SakuraMYK/PyCodeJOJO/raw/master/images/GIF/colorPicker.gif)
 
 ## 📖 功能的启用与关闭 | Enable and Disable Features
 
-![设置面板演示 | Settings Panel Demo](images/GIF/showSettings.gif)
+![设置面板演示 | Settings Panel Demo](https://github.com/SakuraMYK/PyCodeJOJO/raw/master/images/GIF/showSettings.gif)
 
 1. ⌨️ 按下 `Ctrl + ,` 打开设置面板 | Press `Ctrl + ,` to open Settings
 2. 🔍 搜索 `>pycodejojo` 过滤配置项 | Search `>pycodejojo` to filter configurations
@@ -128,4 +128,4 @@ When using PyCodeJoJo alongside Pylance, you may notice two color pickers appear
 
 欢迎提交问题和功能建议到 GitHub 仓库
 Welcome to submit issues and feature suggestions to GitHub repository:
-[GitHub Repository](https://github.com/yourusername/pycodejojo)
+[GitHub Repository](https://github.com/SakuraMYK/PyCodeJOJO.git)
