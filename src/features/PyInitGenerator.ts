@@ -169,6 +169,7 @@ function generateInitFile (dirPath: string): boolean {
   return false // 没有可导出的类，未生成
 }
 
+// 选择目录
 async function selectFolders () {
   if (vscode.workspace.workspaceFolders?.length === 0) {
     console.warn('selectFolders: No workspace folders found')
