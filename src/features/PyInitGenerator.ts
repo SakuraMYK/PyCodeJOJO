@@ -36,7 +36,7 @@ export async function deleteAllInitFiles (dirPath: string) {
 
   // 也可以同时显示在VSCode消息提示中
   vscode.window.showInformationMessage(
-    `Total __init__.py files deleted: ${deletedCount}`
+    `🗑️ Total __init__.py files deleted: ${deletedCount}`
   )
 }
 
@@ -95,40 +95,6 @@ function collectDirectories (dirPath: string): string[] {
   return dirs
 }
 
-// 新增：显示文件夹选择框
-async function selectFolders () {
-  // 获取工作区根目录
-  if (vscode.workspace.workspaceFolders?.length === 0) {
-    console.warn('selectFolders: No workspace folders found')
-    return []
-  }
-
-  const rootPath = vscode.workspace.workspaceFolders![0].uri.fsPath
-  const allDirs = collectDirectories(rootPath)
-
-  if (allDirs.length === 0) {
-    vscode.window.showInformationMessage(
-      'selectFolders: No valid directories found'
-    )
-    return []
-  }
-
-  // 转换为QuickPick选项（显示相对路径，便于用户识别）
-  const options = allDirs.map(dir => ({
-    label: path.relative(rootPath, dir), // 显示相对于工作区根目录的路径
-    picked: false // 默认不勾选
-  }))
-
-  // 显示多选框
-  const selected = await vscode.window.showQuickPick(options, {
-    canPickMany: true, // 允许多选
-    title: 'select directories to generate __init__.py files', // 标题
-    placeHolder: '选择要生成__init__.py文件的目录'
-  })
-
-  return selected ? selected.map(item => item.label) : []
-}
-
 export async function generateInitForSelectedDirs () {
   const selectedDirs = await selectFolders()
   if (selectedDirs.length === 0) return
@@ -152,7 +118,7 @@ export async function generateInitForSelectedDirs () {
   })
 
   vscode.window.showInformationMessage(
-    `Traversed ${selectedDirs.length} directories, successfully generated ${generatedCount} __init__.py files`
+    `✅ Traversed ${selectedDirs.length} directories, successfully generated ${generatedCount} __init__.py files`
   )
 }
 
@@ -201,4 +167,109 @@ function generateInitFile (dirPath: string): boolean {
   }
 
   return false // 没有可导出的类，未生成
+}
+
+async function selectFolders () {
+  if (vscode.workspace.workspaceFolders?.length === 0) {
+    console.warn('selectFolders: No workspace folders found')
+    return []
+  }
+
+  const rootPath = vscode.workspace.workspaceFolders![0].uri.fsPath
+  const allDirs = collectDirectories(rootPath)
+
+  if (allDirs.length === 0) {
+    vscode.window.showInformationMessage(
+      '📁 No valid directories found (no Python files detected)'
+    )
+    return []
+  }
+
+  // 构建目录层级结构
+  interface DirNode {
+    path: string
+    name: string
+    children: DirNode[]
+    depth: number
+  }
+
+  // 根节点作为虚拟父节点
+  const rootNode: DirNode = {
+    path: rootPath,
+    name: path.basename(rootPath),
+    children: [],
+    depth: -1
+  }
+
+  // 构建目录树
+  allDirs.forEach(dir => {
+    let currentNode = rootNode
+    const relativePath = path.relative(rootPath, dir)
+    const pathParts = relativePath.split(path.sep)
+
+    pathParts.forEach((part, index) => {
+      const fullPath = path.join(rootPath, ...pathParts.slice(0, index + 1))
+      let child = currentNode.children.find(c => c.name === part)
+
+      if (!child) {
+        child = {
+          path: fullPath,
+          name: part,
+          children: [],
+          depth: index
+        }
+        currentNode.children.push(child)
+      }
+
+      currentNode = child
+    })
+  })
+
+  // 递归生成树状结构选项
+  const options: vscode.QuickPickItem[] = []
+  // 修改 selectFolders 函数中的 traverseNode 方法
+  function traverseNode (
+    node: DirNode,
+    isLastChild: boolean = false,
+    prefix: string = ''
+  ) {
+    if (node.depth >= 0) {
+      // 跳过虚拟根节点
+      const icon = '📂'
+      // 根节点的子元素（depth=0）不添加前缀空格，确保与第一行对齐
+      const depthPrefix =
+        node.depth === 0 ? '' : prefix + (isLastChild ? '└─' : '├─')
+
+      options.push({
+        label: `${depthPrefix}${icon} ${node.name}`,
+        description: path.relative(rootPath, node.path),
+        picked: false
+      })
+    }
+
+    // 处理子节点前缀：根节点的子元素不加前缀空格
+    const childPrefix =
+      node.depth === -1
+        ? ''
+        : node.depth === 0
+        ? ''
+        : prefix + (isLastChild ? '  ' : '│ ')
+
+    // 递归处理子节点
+    node.children.forEach((child, index) => {
+      const isLast = index === node.children.length - 1
+      traverseNode(child, isLast, childPrefix)
+    })
+  }
+  // 从根节点开始遍历生成选项
+  traverseNode(rootNode)
+
+  // 显示多选框
+  const selected = await vscode.window.showQuickPick(options, {
+    canPickMany: true,
+    title: 'Select directories to generate __init__.py files',
+    placeHolder: '选择要生成__init__.py文件的目录'
+  })
+
+  return selected ? selected.map(item => item.description!) : []
 }
