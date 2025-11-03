@@ -133,6 +133,11 @@
       },
       {
         "category": "PyCodeJOJO",
+        "command": "Pycodejojo.DeleteAllPycacheFolders",
+        "title": "Delete All __pycache__ Folder"
+      },
+      {
+        "category": "PyCodeJOJO",
         "command": "Pycodejojo.RandomTheme",
         "title": "Random Theme"
       }

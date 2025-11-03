@@ -8,6 +8,7 @@ import {
   generateInitForSelectedDirs,
   deleteAllInitFiles
 } from './features/PyInitGenerator'
+import { deleteAllPycacheFolders } from './features/deletePycache'
 
 let enableFontBackgroundColor: boolean = true
 let enableHoverTranslate: boolean = false
@@ -50,6 +51,12 @@ export function activate (context: vscode.ExtensionContext) {
       'Pycodejojo.GeneratePythonInitFile',
       async () => {
         generateInitForSelectedDirs()
+      }
+    ),
+    vscode.commands.registerCommand(
+      'Pycodejojo.DeleteAllPycacheFolders',
+      async () => {
+        deleteAllPycacheFolders()
       }
     ),
     vscode.commands.registerCommand(
@@ -122,7 +129,6 @@ export function activate (context: vscode.ExtensionContext) {
     )
     switchTheme()
   }
-  switchTheme()
 }
 
 export function deactivate () {
