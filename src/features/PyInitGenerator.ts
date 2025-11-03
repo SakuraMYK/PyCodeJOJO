@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 // 删除指定目录及其子目录下所有的__init__.py文件
-function deleteInitFiles (dirPath: string) {
+export async function deleteAllInitFiles (dirPath: string) {
   const items = fs.readdirSync(dirPath)
 
   items.forEach(item => {
@@ -16,12 +16,12 @@ function deleteInitFiles (dirPath: string) {
       item !== '.git' &&
       item !== '.vscode'
     ) {
-      deleteInitFiles(fullPath)
+      deleteAllInitFiles(fullPath)
     }
     // 如果是__init__.py文件，删除它
     else if (stats.isFile() && item === '__init__.py') {
       fs.unlinkSync(fullPath)
-      vscode.window.showInformationMessage(`Deleted: ${fullPath}`)
+      console.log(`Deleted: ${fullPath}`)
     }
   })
 }
@@ -85,14 +85,14 @@ function collectDirectories (dirPath: string): string[] {
 async function selectFolders () {
   const editor = vscode.window.activeTextEditor
   if (!editor) {
-    vscode.window.showWarningMessage('No active editor found')
+    console.warn('selectFolders: No active editor found')
     return []
   }
 
   const documentUri = editor.document.uri
   const folderUri = vscode.workspace.getWorkspaceFolder(documentUri)
   if (!folderUri) {
-    vscode.window.showWarningMessage('File is not part of a workspace folder')
+    console.warn('selectFolders: File is not part of a workspace folder')
     return []
   }
 
@@ -100,7 +100,7 @@ async function selectFolders () {
   const allDirs = collectDirectories(rootPath)
 
   if (allDirs.length === 0) {
-    vscode.window.showInformationMessage('No valid directories found')
+    console.warn('selectFolders: No valid directories found')
     return []
   }
 
@@ -121,7 +121,7 @@ async function selectFolders () {
 }
 
 // 修改原函数，使用选择的文件夹
-export async function processSelectedFolders () {
+export async function generateInitForSelectedDirs () {
   const selectedDirs = await selectFolders()
   if (selectedDirs.length === 0) return
 
@@ -170,25 +170,4 @@ function generateInitFile (dirPath: string) {
     const initPath = path.join(dirPath, '__init__.py')
     fs.writeFileSync(initPath, initContent)
   }
-}
-
-export async function printCurrentFolderPath () {
-  const editor = vscode.window.activeTextEditor
-
-  if (!editor) {
-    console.warn('No active editor found')
-    return
-  }
-
-  const documentUri = editor.document.uri
-  const folderUri = vscode.workspace.getWorkspaceFolder(documentUri)
-
-  if (!folderUri) {
-    console.warn('File is not part of a workspace folder')
-    return
-  }
-
-  const folderPath = folderUri.uri.fsPath
-  generateInitFile(folderPath) // 调用新函数生成__init__.py
-  processSelectedFolders()
 }

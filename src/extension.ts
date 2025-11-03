@@ -3,7 +3,10 @@ import { ColorPicker } from './features/colorPicker'
 import { FontBackgroundColor } from './features/fontBackgroundColor'
 import { getHoverInfo } from './features/hoverTranslate'
 import { switchTheme } from './features/themeManager'
-import { printCurrentFolderPath } from './features/PyInitGenerator'
+import {
+  generateInitForSelectedDirs,
+  deleteAllInitFiles
+} from './features/PyInitGenerator'
 
 let enableFontBackgroundColor: boolean = true
 let enableHoverTranslate: boolean = false
@@ -18,13 +21,11 @@ export function activate (context: vscode.ExtensionContext) {
       if (enableFontBackgroundColor) {
         fontBackgroundColor.update(vscode.window.activeTextEditor)
       }
-      printCurrentFolderPath()
     }),
     vscode.workspace.onDidChangeTextDocument(event => {
       if (enableFontBackgroundColor) {
         fontBackgroundColor.update(vscode.window.activeTextEditor)
       }
-
     }),
     vscode.window.onDidChangeActiveTextEditor(editor => {
       if (enableFontBackgroundColor) {
