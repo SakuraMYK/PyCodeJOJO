@@ -5,10 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.11.9...HEAD)
+## [Unreleased](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.11.10...HEAD)
 
 ### Commits
 
+- ``` [`11daea7`](https://github.com/SakuraMYK/PyCodeJOJO/commit/11daea7321774f05fde2ec3582330555a6ce2f4d)
+
+## [v2025.11.10](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.11.9...v2025.11.10) - 2025-11-04
+
+### Commits
+
+- build(changelog): 更新 CHANGELOG 文件并添加新版本条目 [`43d6bbb`](https://github.com/SakuraMYK/PyCodeJOJO/commit/43d6bbb2e2a2f043d844e5d1a5d5229140f33575)
 - ``` [`074356f`](https://github.com/SakuraMYK/PyCodeJOJO/commit/074356f3a1351c73144863fbc56dbd996dbbcf5e)
 
 ## [v2025.11.9](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.11.8...v2025.11.9) - 2025-11-04
