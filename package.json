@@ -1,7 +1,7 @@
 {
   "name": "pycodejojo",
   "displayName": "PyCodeJOJO",
-  "description": "VSCode with superhero themes and coding utilities",
+  "description": "VSCode with superhero themes and python coding utilities",
   "icon": "images/kujojotaro_alpha.png",
   "version": "2025.11.4",
   "engines": {

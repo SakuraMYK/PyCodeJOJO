@@ -5,10 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.19...HEAD)
+## [v2025.11.4](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.11.3...v2025.11.4) - 2025-11-04
 
 ### Commits
 
+- feat(themes): 更新 Random 主题颜色配置 [`71d7d79`](https://github.com/SakuraMYK/PyCodeJOJO/commit/71d7d798e2c224d90ac63c2fb1a972713ef606b6)
+- docs(readme): 优化主题切换和随机主题生成器的使用说明 [`f191456`](https://github.com/SakuraMYK/PyCodeJOJO/commit/f1914561bae9dba752bc3679816ee77b8c382844)
+- docs(readme): 添加随机主题并优化文档结构 [`dca7a82`](https://github.com/SakuraMYK/PyCodeJOJO/commit/dca7a82229d52930e7dede5802a33a6ff6ae5581)
+- docs(readme): 更新 README 文档内容 [`fd6d21c`](https://github.com/SakuraMYK/PyCodeJOJO/commit/fd6d21c26c49d2f5ac55e5f066ad74eb006ad702)
+- feat(randomTheme): 提升变量名颜色对比度以增强可读性 [`683ae51`](https://github.com/SakuraMYK/PyCodeJOJO/commit/683ae51dfdc76c5557fc87c128c109b38c09878b)
+
+## [v2025.11.3](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.6.19...v2025.11.3) - 2025-11-03
+
+### Commits
+
+- ``` [`d849fba`](https://github.com/SakuraMYK/PyCodeJOJO/commit/d849fba928301120db72d41491f16af894fdb128)
 - fix(randomTheme): 改进活动栏图标对比度并更新主题颜色配置 [`77b9c21`](https://github.com/SakuraMYK/PyCodeJOJO/commit/77b9c2149fbe85648fdaeb1a97448a41a7a47547)
 - feat(randomTheme): 重构随机主题颜色系统为基于HSV的和谐配色方案 [`4cbae41`](https://github.com/SakuraMYK/PyCodeJOJO/commit/4cbae41b7f9517b32ad8f5b4d62438dba4ffc6e7)
 - feat(randomTheme): 重构随机主题颜色生成功能 [`e40d26e`](https://github.com/SakuraMYK/PyCodeJOJO/commit/e40d26e22a7df7308f167fd1b786d93ce7931810)
