@@ -116,7 +116,9 @@ async function selectFolders () {
   const allDirs = collectDirectories(rootPath)
 
   if (allDirs.length === 0) {
-    console.warn('selectFolders: No valid directories found')
+    vscode.window.showInformationMessage(
+      'selectFolders: No valid directories found'
+    )
     return []
   }
 
@@ -130,7 +132,8 @@ async function selectFolders () {
   // 显示多选框
   const selected = await vscode.window.showQuickPick(options, {
     canPickMany: true, // 允许多选
-    title: 'select directories to generate __init__.py files' // 标题
+    title: 'select directories to generate __init__.py files', // 标题
+    placeHolder: '选择要生成__init__.py文件的目录'
   })
 
   return selected ? selected.map(item => item.description) : []
@@ -178,7 +181,8 @@ function generateInitFile (dirPath: string): boolean {
     const content = fs.readFileSync(filePath, 'utf-8')
     const moduleName = path.basename(file, '.py')
 
-    const classMatches = content.match(/(?<!#.*)\bclass\s+(\w+)/g)
+    // 修改classMatches的正则表达式，只匹配顶级类
+    const classMatches = content.match(/^(?<!#.*)\bclass\s+(\w+)/gm)
     if (classMatches) {
       classMatches.forEach(match => {
         const className = match.replace('class ', '')
