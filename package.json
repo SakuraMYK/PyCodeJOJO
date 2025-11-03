@@ -106,6 +106,11 @@
         "label": "EmeraldForest",
         "uiTheme": "vs-dark",
         "path": "./themes/EmeraldForest.json"
+      },
+      {
+        "label": "Random",
+        "uiTheme": "vs-dark",
+        "path": "themes/Random.json"
       }
     ],
     "commands": [
@@ -123,6 +128,11 @@
         "category": "PyCodeJOJO",
         "command": "Pycodejojo.DeleteAllPythonInitFile",
         "title": "Delete All Python __init__.py File"
+      },
+      {
+        "category": "PyCodeJOJO",
+        "command": "Pycodejojo.RandomTheme",
+        "title": "Random Theme"
       }
     ],
     "configuration": {
@@ -179,6 +189,7 @@
             "IronMan-Mark3",
             "FrozenCrystal",
             "EmeraldForest",
+            "Random",
             "Default Dark+"
           ]
         }

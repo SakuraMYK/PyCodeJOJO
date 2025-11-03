@@ -3,6 +3,7 @@ import { ColorPicker } from './features/colorPicker'
 import { FontBackgroundColor } from './features/fontBackgroundColor'
 import { getHoverInfo } from './features/hoverTranslate'
 import { switchTheme } from './features/themeManager'
+import { randomizeThemeColors } from './features/randomTheme'
 import {
   generateInitForSelectedDirs,
   deleteAllInitFiles
@@ -41,6 +42,9 @@ export function activate (context: vscode.ExtensionContext) {
     // ========= 注册命令 =========
     vscode.commands.registerCommand('Pycodejojo.SwitchTheme', async () => {
       switchTheme()
+    }),
+    vscode.commands.registerCommand('Pycodejojo.RandomTheme', async () => {
+      randomizeThemeColors(context)
     }),
     vscode.commands.registerCommand(
       'Pycodejojo.GeneratePythonInitFile',
