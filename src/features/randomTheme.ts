@@ -667,7 +667,6 @@ export async function randomizeThemeColors (context: vscode.ExtensionContext) {
 
     // 检查主题文件是否存在
     if (!fs.existsSync(themePath)) {
-      console.error(`主题文件未找到: ${themePath}`)
       vscode.window.showErrorMessage(`Theme file not found: ${themePath}`)
       return
     }
@@ -675,7 +674,6 @@ export async function randomizeThemeColors (context: vscode.ExtensionContext) {
     // 读取原始主题内容作为备份
     const originalContent = fs.readFileSync(themePath, 'utf8')
     if (!originalContent.trim()) {
-      console.error(`主题文件内容为空: ${themePath}`)
       vscode.window.showErrorMessage(`Theme file is empty: ${themePath}`)
       return
     }
@@ -685,8 +683,9 @@ export async function randomizeThemeColors (context: vscode.ExtensionContext) {
     try {
       themeJson = JSON.parse(originalContent)
     } catch (parseError) {
-      console.error(`主题文件解析错误: ${(parseError as Error).message}`)
-      vscode.window.showErrorMessage(`Theme file parsing error. Please check the JSON format`)
+      vscode.window.showErrorMessage(
+        `Theme file parsing error. Please check the JSON format`
+      )
       return
     }
 
@@ -708,8 +707,9 @@ export async function randomizeThemeColors (context: vscode.ExtensionContext) {
     if (!newContent.trim()) {
       // 如果新内容为空，恢复原始内容
       fs.writeFileSync(themePath, originalContent, 'utf8')
-      console.error('生成的主题内容为空，已恢复原始内容')
-      vscode.window.showErrorMessage('Generated theme content is empty, original content has been restored')
+      vscode.window.showErrorMessage(
+        'Generated theme content is empty, original content has been restored'
+      )
       return
     }
 
@@ -737,11 +737,13 @@ export async function randomizeThemeColors (context: vscode.ExtensionContext) {
     vscode.window.showInformationMessage('Random theme has been updated')
   } catch (error) {
     console.error(
-      `处理主题文件失败: ${
+      `Error updating random theme: ${
         error instanceof Error ? error.message : String(error)
       }`
     )
-    vscode.window.showErrorMessage('Error updating random theme. Please check the console')
+    vscode.window.showErrorMessage(
+      'Error updating random theme. Please check the console'
+    )
   }
 }
 

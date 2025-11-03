@@ -122,6 +122,7 @@ export function activate (context: vscode.ExtensionContext) {
     )
     switchTheme()
   }
+  switchTheme()
 }
 
 export function deactivate () {
