@@ -1,29 +1,45 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-// 删除指定目录及其子目录下所有的__init__.py文件
+
+// 修改后的deleteAllInitFiles函数，增加删除文件总数统计
 export async function deleteAllInitFiles (dirPath: string) {
-  const items = fs.readdirSync(dirPath)
+  let deletedCount = 0 // 用于统计删除的文件数量
 
-  items.forEach(item => {
-    const fullPath = path.join(dirPath, item)
-    const stats = fs.statSync(fullPath)
+  function deleteRecursive (currentDir: string) {
+    const items = fs.readdirSync(currentDir)
 
-    // 如果是目录且不是特殊目录，递归处理子目录
-    if (
-      stats.isDirectory() &&
-      item !== '__pycache__' &&
-      item !== '.git' &&
-      item !== '.vscode'
-    ) {
-      deleteAllInitFiles(fullPath)
-    }
-    // 如果是__init__.py文件，删除它
-    else if (stats.isFile() && item === '__init__.py') {
-      fs.unlinkSync(fullPath)
-      console.log(`Deleted: ${fullPath}`)
-    }
-  })
+    items.forEach(item => {
+      const fullPath = path.join(currentDir, item)
+      const stats = fs.statSync(fullPath)
+
+      // 如果是目录且不是特殊目录，递归处理子目录
+      if (
+        stats.isDirectory() &&
+        item !== '__pycache__' &&
+        item !== '.git' &&
+        item !== '.vscode'
+      ) {
+        deleteRecursive(fullPath)
+      }
+      // 如果是__init__.py文件，删除它并计数
+      else if (stats.isFile() && item === '__init__.py') {
+        fs.unlinkSync(fullPath)
+        console.log(`Deleted: ${fullPath}`)
+        deletedCount++ // 每删除一个文件就增加计数
+      }
+    })
+  }
+
+  // 开始递归删除
+  deleteRecursive(dirPath)
+
+  // 打印删除的文件总数
+  console.log(`Total __init__.py files deleted: ${deletedCount}`)
+  // 也可以同时显示在VSCode消息提示中
+  vscode.window.showInformationMessage(
+    `Total __init__.py files deleted: ${deletedCount}`
+  )
 }
 
 // 辅助函数：检查目录或其子目录中是否存在Python文件
@@ -114,60 +130,77 @@ async function selectFolders () {
   // 显示多选框
   const selected = await vscode.window.showQuickPick(options, {
     canPickMany: true, // 允许多选
-    title: 'Select directories to process' // 标题
+    title: 'select directories to generate __init__.py files' // 标题
   })
 
   return selected ? selected.map(item => item.description) : []
 }
 
-// 修改原函数，使用选择的文件夹
 export async function generateInitForSelectedDirs () {
   const selectedDirs = await selectFolders()
   if (selectedDirs.length === 0) return
 
+  let generatedCount = 0 // 统计生成的文件数量
+
   // 对选中的文件夹执行操作（例如生成__init__.py）
   selectedDirs.forEach(dir => {
-    generateInitFile(dir)
-    vscode.window.showInformationMessage(`Processed: ${dir}`)
+    const wasGenerated = generateInitFile(dir)
+    if (wasGenerated) {
+      generatedCount++
+      vscode.window.showInformationMessage(`Generated: ${dir}`)
+    } else {
+      vscode.window.showInformationMessage(`No Python files found in: ${dir}`)
+    }
   })
+
+  // 打印并显示生成的文件总数
+  vscode.window.showInformationMessage(
+    `Total __init__.py files generated: ${generatedCount}`
+  )
 }
 
-// 新增函数：提取Python类名并生成__init__.py
-function generateInitFile (dirPath: string) {
+// 修改generateInitFile函数以返回是否生成了文件
+function generateInitFile (dirPath: string): boolean {
   const items = fs.readdirSync(dirPath)
   const pyFiles = items.filter(
     item => item.endsWith('.py') && item !== '__init__.py'
   )
 
   if (pyFiles.length === 0) {
-    return
+    return false // 没有Python文件，未生成
   }
 
   const imports: string[] = []
+  const exportedClasses: string[] = []
 
-  // 读取所有Python文件并提取类名，关联文件名
   pyFiles.forEach(file => {
     const filePath = path.join(dirPath, file)
     const content = fs.readFileSync(filePath, 'utf-8')
-    // 提取文件名（不含扩展名）作为模块名
     const moduleName = path.basename(file, '.py')
 
-    // 匹配类定义（排除注释中的类定义）
     const classMatches = content.match(/(?<!#.*)\bclass\s+(\w+)/g)
     if (classMatches) {
       classMatches.forEach(match => {
         const className = match.replace('class ', '')
-        // 从模块（文件）中导入类
         imports.push(`from .${moduleName} import ${className}`)
+        exportedClasses.push(className)
       })
     }
   })
 
-  // 去重并生成__init__.py内容
   if (imports.length > 0) {
-    const uniqueImports = [...new Set(imports)] // 避免重复导入
-    const initContent = uniqueImports.join('\n')
+    const uniqueImports = [...new Set(imports)]
+    const uniqueExports = [...new Set(exportedClasses)]
+
+    const allList = `__all__ = [\n  ${uniqueExports
+      .map(cls => `'${cls}'`)
+      .join(',\n  ')}\n]`
+
+    const initContent = [...uniqueImports, '', allList].join('\n')
     const initPath = path.join(dirPath, '__init__.py')
     fs.writeFileSync(initPath, initContent)
+    return true // 成功生成文件
   }
+
+  return false // 没有可导出的类，未生成
 }
