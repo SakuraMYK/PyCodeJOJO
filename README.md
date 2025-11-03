@@ -81,24 +81,8 @@ You can customize which features are enabled through VSCode settings:
 
 ### 🎲 随机主题生成器 | Random Theme Generator
 
-智能生成和谐的随机主题，确保所有元素保持的对比度和可读性。
-Intelligently generates harmonious random themes, ensuring all elements maintain good contrast and readability.
-
-功能特点 | Features：
-
-- 🎨 智能颜色系统 | Smart Color System
-  - 自动生成和谐配色方案 | Automatically generates harmonious color schemes
-  - 支持深色/浅色主题自适应 | Adapts to dark/light themes
-  - 确保变量名高对比度显示 | Ensures high contrast for variable names
-- 🎯 对比度优化 | Contrast Optimization
-  - WCAG 标准对比度检查 | WCAG standard contrast checking
-  - 变量名对比度优化至 7:1 | Variable name contrast optimized to 7:1
-  - 智能调整亮度与饱和度 | Intelligent brightness and saturation adjustment
-- 🌈 丰富的颜色类型 | Rich Color Types
-  - 主色调（UI 元素）| Primary colors (UI elements)
-  - 辅助色（强调元素）| Secondary colors (accent elements)
-  - 语法高亮色 | Syntax highlighting colors
-  - 中性色（边框等）| Neutral colors (borders, etc.)
+生成随机主题。
+Generates random themes.
 
 使用方法 | Usage：
 
