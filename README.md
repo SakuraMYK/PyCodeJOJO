@@ -8,13 +8,7 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 
 ### 🎭 切换主题 | Switch Theme
 
-![主题切换演示 | Theme Switching Demo](images/GIF/switchTheme.gif)
-
-1. ⌨️ `Ctrl+Shift+P` 打开命令面板 | Open command palette
-2. 🔍 输入 "Switch Theme" | Type "Switch Theme"
-3. ✨ 选择任意 PyCodeJoJo 主题 | Select any PyCodeJoJo theme
-
-### 🎨 可用主题 | Theme Collection
+#### 🎨 可用主题 | Theme Collection
 
 - 🤖 **Iron Man Mark 3** - 钢铁侠经典配色
 - 🐝 **Bumblebee** - 大黄蜂明亮配色
@@ -24,6 +18,14 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 - 💎 **Purple Crystal/Phantom** - 紫色水晶/幻影系列主题
 - 🌳 **Emerald Forest** - 翡翠森林主题
 - 🚀 **Random** - 随机主题
+
+使用方法 | Usage：
+
+1. ⌨️ `Ctrl+Shift+P` 打开命令面板 | Open command palette
+2. 🔍 输入 "Switch Theme" | Type "Switch Theme"
+3. ✨ 选择任意 PyCodeJoJo 主题 | Select any PyCodeJoJo theme
+
+![主题切换演示 | Theme Switching Demo](images/GIF/switchTheme.gif)
 
 ### 🎲 随机主题生成器 | Random Theme Generator
 
@@ -52,6 +54,10 @@ Intelligently generates harmonious random themes, ensuring all elements maintain
 2. 🔍 输入 "Random Theme" | Type "Random Theme"
 3. ✨ 自动生成并应用新主题 | Automatically generates and applies new theme
 
+##### 使用示例 | Usage Examples
+
+![随机主题生成器演示 | Random Theme Generator Demo](images/GIF/randomTheme.gif)
+
 ### 🛠️ 功能特性 | Features
 
 #### 🐍 Python **init**.py 生成器 | Python **init**.py Generator
@@ -74,7 +80,7 @@ Automatically scans Python files in the current directory, extracts all class na
 
 ##### 使用示例 | Usage Examples
 
-![Python **init**.py 生成器演示 | Python **init**.py Generator Demo](images/GIF/images/GIF/generatePythonInitFile.gif)
+![Python **init**.py 生成器演示 | Python **init**.py Generator Demo](images/GIF/generatePythonInitFile.gif)
 
 #### 🎯 颜色选择器 | Color Picker
 
