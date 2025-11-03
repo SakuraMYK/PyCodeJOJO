@@ -23,6 +23,7 @@ PyCodeJoJo is a feature-rich VSCode extension that offers multiple Transformers 
 - 🚛 **Optimus Prime** - 擎天柱经典配色
 - 💎 **Purple Crystal/Phantom** - 紫色水晶/幻影系列主题
 - 🌳 **Emerald Forest** - 翡翠森林主题
+- 🚀 **Random** - 随机主题
 
 ### 🎲 随机主题生成器 | Random Theme Generator
 
@@ -53,7 +54,7 @@ Intelligently generates harmonious random themes, ensuring all elements maintain
 
 ### 🛠️ 功能特性 | Features
 
-### 🐍 Python **init**.py 生成器 | Python **init**.py Generator
+#### 🐍 Python **init**.py 生成器 | Python **init**.py Generator
 
 自动扫描当前目录下的 Python 文件，提取所有类名并生成/更新 `__init__.py` 文件。
 Automatically scans Python files in the current directory, extracts all class names, and generates/updates the `__init__.py` file.
@@ -71,9 +72,9 @@ Automatically scans Python files in the current directory, extracts all class na
 2. 🔍 输入 "Generate Python Init" | Type "Generate Python Init"
 3. ✨ 自动生成/更新当前选中目录的 `__init__.py` | Automatically generates/updates `__init__.py` in current selected directory
 
-### 使用示例 | Usage Examples
+##### 使用示例 | Usage Examples
 
-![取色器演示 | Color Picker Demo](images/GIF/colorPicker.gif)
+![Python **init**.py 生成器演示 | Python **init**.py Generator Demo](images/GIF/images/GIF/generatePythonInitFile.gif)
 
 #### 🎯 颜色选择器 | Color Picker
 
@@ -96,6 +97,10 @@ You can customize which features are enabled through VSCode settings:
 2. 搜索 ">pycodejojo" | Search for ">pycodejojo"
 3. 根据需要开启或关闭特定功能 | Toggle specific features as needed
 
+##### 颜色选择器使用示例 | Color Picker Usage Example
+
+![取色器演示 | Color Picker Demo](images/GIF/colorPicker.gif)
+
 ## 📖 功能的启用与关闭 | Enable and Disable Features
 
 ![设置面板演示 | Settings Panel Demo](images/GIF/showSettings.gif)
@@ -107,22 +112,14 @@ You can customize which features are enabled through VSCode settings:
 
 当同时使用 PyCodeJoJo 和 Pylance 插件时，Python 文件中的颜色字符串可能会在左侧出现两个取色器色块，导致界面混乱。如果你希望避免这种混乱局面，可以通过以下步骤关闭 Pylance 的取色器功能：
 
-1. 按下 `Ctrl + ,` 打开设置
-2. 在搜索框中输入 `python.analysis.enableColorPicker`
-3. 取消勾选该选项即可关闭 Pylance 的取色器
-
 When using PyCodeJoJo alongside Pylance, you may notice two color pickers appearing on the left side of color strings in Python files, causing visual clutter. To avoid this confusion, you can disable Pylance's color picker by:
 
-1. Press `Ctrl + ,` to open settings
-2. Search for `python.analysis.enableColorPicker`
-3. Uncheck this option to disable Pylance's color picker
+1. 按下 `Ctrl + ,` 打开设置 | Press `Ctrl + ,` to open settings
+2. 在搜索框中输入 `python.analysis.enableColorPicker` | Search for `python.analysis.enableColorPicker`
+3. 取消勾选该选项即可关闭 Pylance 的取色器 | Uncheck the option to disable Pylance's color picker
 
 ## 🤝 贡献 | Contribution
 
 欢迎提交问题和功能建议到 GitHub 仓库
 Welcome to submit issues and feature suggestions to GitHub repository:
 [GitHub Repository](https://github.com/yourusername/pycodejojo)
-
-```
-
-```
