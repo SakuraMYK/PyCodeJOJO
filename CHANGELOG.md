@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Commits
 
+- ``` [`9f12006`](https://github.com/SakuraMYK/PyCodeJOJO/commit/9f12006d58748731be722b922e1f1a37245daa61)
+- build(changelog): 更新 CHANGELOG 文件并添加新版本条目 [`2a02f73`](https://github.com/SakuraMYK/PyCodeJOJO/commit/2a02f732e046e41ee43d69d9cad01aca1dab97bc)
 - ``` [`11daea7`](https://github.com/SakuraMYK/PyCodeJOJO/commit/11daea7321774f05fde2ec3582330555a6ce2f4d)
 
 ## [v2025.11.10](https://github.com/SakuraMYK/PyCodeJOJO/compare/v2025.11.9...v2025.11.10) - 2025-11-04
