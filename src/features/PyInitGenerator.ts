@@ -34,8 +34,6 @@ export async function deleteAllInitFiles (dirPath: string) {
   // 开始递归删除
   deleteRecursive(dirPath)
 
-  // 打印删除的文件总数
-  console.log(`Total __init__.py files deleted: ${deletedCount}`)
   // 也可以同时显示在VSCode消息提示中
   vscode.window.showInformationMessage(
     `Total __init__.py files deleted: ${deletedCount}`
@@ -99,20 +97,13 @@ function collectDirectories (dirPath: string): string[] {
 
 // 新增：显示文件夹选择框
 async function selectFolders () {
-  const editor = vscode.window.activeTextEditor
-  if (!editor) {
-    console.warn('selectFolders: No active editor found')
+  // 获取工作区根目录
+  if (vscode.workspace.workspaceFolders?.length === 0) {
+    console.warn('selectFolders: No workspace folders found')
     return []
   }
 
-  const documentUri = editor.document.uri
-  const folderUri = vscode.workspace.getWorkspaceFolder(documentUri)
-  if (!folderUri) {
-    console.warn('selectFolders: File is not part of a workspace folder')
-    return []
-  }
-
-  const rootPath = folderUri.uri.fsPath
+  const rootPath = vscode.workspace.workspaceFolders![0].uri.fsPath
   const allDirs = collectDirectories(rootPath)
 
   if (allDirs.length === 0) {
@@ -125,7 +116,6 @@ async function selectFolders () {
   // 转换为QuickPick选项（显示相对路径，便于用户识别）
   const options = allDirs.map(dir => ({
     label: path.relative(rootPath, dir), // 显示相对于工作区根目录的路径
-    description: dir, // 完整路径作为描述
     picked: false // 默认不勾选
   }))
 
@@ -136,29 +126,33 @@ async function selectFolders () {
     placeHolder: '选择要生成__init__.py文件的目录'
   })
 
-  return selected ? selected.map(item => item.description) : []
+  return selected ? selected.map(item => item.label) : []
 }
 
 export async function generateInitForSelectedDirs () {
   const selectedDirs = await selectFolders()
   if (selectedDirs.length === 0) return
 
-  let generatedCount = 0 // 统计生成的文件数量
+  // 获取工作区根目录（与selectFolders保持一致）
+  if (!vscode.workspace.workspaceFolders?.length) {
+    vscode.window.showErrorMessage('No workspace folders found')
+    return
+  }
+  const rootPath = vscode.workspace.workspaceFolders[0].uri.fsPath
 
-  // 对选中的文件夹执行操作（例如生成__init__.py）
-  selectedDirs.forEach(dir => {
-    const wasGenerated = generateInitFile(dir)
+  let generatedCount = 0
+
+  // 拼接完整路径后再处理
+  selectedDirs.forEach(relativeDir => {
+    const fullDirPath = path.join(rootPath, relativeDir)
+    const wasGenerated = generateInitFile(fullDirPath)
     if (wasGenerated) {
       generatedCount++
-      vscode.window.showInformationMessage(`Generated: ${dir}`)
-    } else {
-      vscode.window.showInformationMessage(`No Python files found in: ${dir}`)
     }
   })
 
-  // 打印并显示生成的文件总数
   vscode.window.showInformationMessage(
-    `Total __init__.py files generated: ${generatedCount}`
+    `Traversed ${selectedDirs.length} directories, successfully generated ${generatedCount} __init__.py files`
   )
 }
 
